@@ -1,0 +1,1596 @@
+<!DOCTYPE html>
+<!--
+
+-->
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>Protokół z ustaleń z czynności kontrolno-rozpoznawczych</title>
+        <link rel="stylesheet" type="text/css" href="data/css/smoothness/jquery-ui-1.10.3.custom.css">
+        <link rel="stylesheet" type="text/css" href="data/style.css">
+
+        <!--  <script src="data/pouchdb.js"></script> -->
+        <script type="text/javascript" charset="utf-8"  src="data/jQuery.js"></script>
+        <script type="text/javascript" charset="utf-8"  src="data/jquery-migrate-1.2.1.js"></script>
+        <script type="text/javascript" charset="utf-8"  src="data/jquery-ui-1.10.3.custom.js"></script>
+        <script type="text/javascript" charset="utf-8"  src="data/jquery.ui.datepicker-pl.js"></script>
+        <script type="text/javascript" charset="utf-8"  src="data/jquery.chained.js"></script>
+        <script type="text/javascript" charset="utf-8" src="data/dane_do_obliczen.js" ></script>
+        <script type="text/javascript" charset="utf-8" src="data/script.js" ></script>
+        <script type="text/javascript" charset="utf-8"  src="data/ckeditor/ckeditor.js" ></script>
+
+        <script type="text/javascript" charset="utf-8"  src="data/ckeditor/adapters/jquery.js"  ></script>
+        <script type="text/javascript" charset="utf-8" src="data/pouchdb.js" ></script>
+        <script type="text/javascript" charset="utf-8" src="data/validator/jquery.validate.js" ></script>
+        <script type="text/javascript" charset="utf-8" src="data/validator/additional-methods.js" ></script>
+        <!--
+        <script>
+        // This code is generally not necessary, but it is here to demonstrate
+        // how to customize specific editor instances on the fly. This fits well
+        // this demo because we have editable elements (like headers) that
+        // require less features.
+
+        // The "instanceCreated" event is fired for every editor instance created.
+        CKEDITOR
+        .on(
+        'instanceCreated',
+        function(event) {
+        var editor = event.editor, element = editor.element;
+
+        // Customize editors for headers and tag list.
+        // These editors don't need features like smileys, templates, iframes etc.
+        if (element.is('h1', 'h2', 'h3')
+        || element.getAttribute('id') == 'taglist') {
+        // Customize the editor configurations on "configLoaded" event,
+        // which is fired after the configuration file loading and
+        // execution. This makes it possible to change the
+        // configurations before the editor initialization takes place.
+        editor
+        .on(
+        'configLoaded',
+        function() {
+
+        // Remove unnecessary plugins to make the editor simpler.
+        editor.config.removePlugins = 'colorbutton,find,flash,font,table,tabletools'
+        + 'forms,iframe,image,newpage,removeformat,'
+        + 'smiley,specialchar,stylescombo,templates,contextmenu';
+
+        // Rearrange the layout of the toolbar.
+        editor.config.toolbarGroups = [
+        {
+        name : 'editing',
+        groups : [
+        'basicstyles',
+        'links' ]
+        },
+        {
+        name : 'undo'
+        },
+        {
+        name : 'clipboard',
+        groups : [
+        'selection',
+        'clipboard' ]
+        }, {
+        name : 'about'
+        } ];
+        });
+        }
+        });
+        </script>
+        -->
+        <link href="sample.css" rel="stylesheet">
+        <style>
+            /* The following styles are just to make the page look nice. */
+
+            /* Workaround to show Arial Black in Firefox. */
+            /*
+             @font-face
+             {
+             font-family: 'arial-black';
+             src: local('Arial Black');
+             }
+
+             /*	*[contenteditable="false"]
+             {
+             padding: 10px;
+             }
+
+             #container
+             {
+             width: 960px;
+             margin: 30px auto 0;
+             }
+
+             #header
+             {
+             overflow: hidden;
+             padding: 0 0 30px;
+             border-bottom: 5px solid #05B2D2;
+             position: relative;
+             }
+
+             #headerLeft,
+             #headerRight
+             {
+             width: 49%;
+             overflow: hidden;
+             }
+
+             #headerLeft
+             {
+             float: left;
+             padding: 10px 1px 1px;
+             }
+
+             #headerLeft h2,
+             #headerLeft h3
+             {
+             text-align: right;
+             margin: 0;
+             overflow: hidden;
+             font-weight: normal;
+             }
+
+             #headerLeft h2
+             {
+             font-family: "Arial Black",arial-black;
+             font-size: 4.6em;
+             line-height: 1.1em;
+             text-transform: uppercase;
+             }
+
+             #headerLeft h3
+             {
+             font-size: 2.3em;
+             line-height: 1.1em;
+             margin: .2em 0 0;
+             color: #666;
+             }
+
+             #headerRight
+             {
+             float: right;
+             padding: 1px;
+             }
+
+             #headerRight p
+             {
+             line-height: 1.8em;
+             text-align: justify;
+             margin: 0;
+             }
+
+             #headerRight p + p
+             {
+             margin-top: 20px;
+             }
+
+             #headerRight > div
+             {
+             padding: 20px;
+             margin: 0 0 0 30px;
+             font-size: 1.4em;
+             color: #666;
+             }
+
+             #columns
+             {
+             color: #333;
+             overflow: hidden;
+             padding: 20px 0;
+             }
+
+             #columns > div
+             {
+             float: left;
+             width: 33.3%;
+             }
+
+             #columns #column1 > div
+             {
+             margin-left: 1px;
+             }
+
+             #columns #column3 > div
+             {
+             margin-right: 1px;
+             }
+
+             #columns > div > div
+             {
+             margin: 0px 10px;
+             padding: 10px 20px;
+             }
+
+             #columns blockquote
+             {
+             margin-left: 15px;
+             }
+
+             #tagLine
+             {
+             border-top: 5px solid #05B2D2;
+             padding-top: 20px;
+             }
+
+             #taglist {
+             display: inline-block;
+             margin-left: 20px;
+             font-weight: bold;
+             margin: 0 0 0 20px;
+             }
+            */
+        </style>
+    </head>
+    <body lang="PL" link="blue" vlink="purple">
+
+        <div id="komunikat">
+            <div>Komunikat o wersji:<br>
+                <h2>Formularz wykorzystuje funkcje nie obsługiwane przez twoją przeglądarkę<br>
+                    Polecamy IE w wersji 10 i wyższych<br>
+                    oraz <a href="https://www.mozilla.org/pl/firefox/new/"  >Firefox</a> w wersji 23 i wyższych 
+                </h2>
+                <div id="wersja_przegladarki"></div>
+            </div>
+        </div> 
+
+
+        <div id="menu">
+
+            <!-- <div id="menu_top">
+                     <div id="komentarz">działa aaaaaaaaaaaaaaaaa</div>
+                         <div id="pola"></div>
+                         <div id="polach"></div>
+                         <h2 id="pouchdb">Press!</h2>
+                         <div id="wynik"></div> -->
+
+            <div style="margin-top: 0px; background-color: green">dklsadslkadslka</div> 
+
+
+
+
+
+            <div id="protocol_switcher"  >
+
+                <div id="dodaj_object" class="switch_button ">
+                    <span>+</span>
+                    <div id="usun_object" class="remove_button" title="Usuń object">X</div>  
+                </div>
+
+            </div>
+
+            <div class="tois Treścip_menu_class" id="spis_tresci_top">
+                Nawigacja
+
+            </div>
+
+        </div> 
+        <form id="formularz" >
+
+            <div id="left"  class="column">Left</div>
+            <div id="kontener" class="column">
+
+
+
+                <table id="miejsce_data" border="0" >
+
+                    <tr id="tr_data">
+                        <td  id="td_miejsce"><div class="editable" contenteditable="false" >
+                                ...................................,
+                            </div></td>
+                        <td id="td_data"><input name="data" type="text" id="data_protokolu"  required="required"/></td>
+                    </tr>
+                </table>
+
+
+
+                <div class="editable" contenteditable="true">
+                    Nr..........
+                </div>
+
+                <h1 align="center" id="title"> P R O T O K Ó Ł
+                    <br>
+                    ustaleń z czynności
+                    kontrolno-rozpoznawczych
+                    <br>
+                    w zakresie ochrony
+                    przeciwpożarowej. </h1>
+
+                <table id="podstawa_prawna">
+                    <caption class="table_caption">
+                        Podstawa prawna(<i>Wybrać właściwe podstawy</i>)
+                    </caption>
+                    <tr>
+                        <td colspan="2">Symbol</td>
+                        <td>Podstawa prawna przeprowadzenia kontroli</td>
+                        <td colspan="2">Uszczegółowienie podstawy prawnej</td>
+                    </tr>
+                    <tr>
+                        <td rowspan="7">A</td>
+                        <td rowspan="7">
+                            <input type="checkbox" id="ustawa_psp"  class="ustawa" title="Podaj podstawę prawną">
+                        </td>
+                        <td rowspan="7">Art.&nbsp;23.&nbsp;1. Ustawy z dnia
+                            24&nbsp;sierpnia&nbsp;1991 roku o Państwowej Straży Pożarnej
+                            (Dz.&nbsp;U. z 2009 roku Nr&nbsp;12,&nbsp;poz.&nbsp;68 ze
+                            zmianami) oraz</td>
+                        <td><i> Art.&nbsp;23.&nbsp;ust. 2 pkt 1) </i><a href="#edn1"
+                                                                        title=""> <i> [1] </i></a></td>
+                        <td>
+                            <input type="checkbox"  >
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><i> Art.&nbsp;23.&nbsp;ust. 2 pkt 2) </i><a href="#edn2"
+                                                                        title=""> <i> [2] </i></a></td>
+                        <td>
+                            <input type="checkbox"  >
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><i> Art.&nbsp;23.&nbsp;ust. 2 pkt 3) </i><a href="#edn3"
+                                                                        title=""> <i> [3] </i></a></td>
+                        <td>
+                            <input type="checkbox"  >
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><i> Art.&nbsp;23.&nbsp;ust. 2 pkt 4) </i><a href="#edn4"
+                                                                        title=""> <i> [4] </i></a></td>
+                        <td>
+                            <input type="checkbox"  >
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><i> Art.&nbsp;23.&nbsp;ust. 2 pkt 5) </i><a href="#edn5"
+                                                                        title=""> <i> [5] </i></a></td>
+                        <td>
+                            <input type="checkbox"  >
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><i> Art.&nbsp;23.&nbsp;ust. 2 pkt 6) </i><a href="#edn6"
+                                                                        title=""> <i> [6] </i></a></td>
+                        <td>
+                            <input type="checkbox"  >
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><i> Art.&nbsp;23.&nbsp;ust. 2 pkt 7) </i><a href="#edn7"
+                                                                        title=""> <i> [7] </i></a></td>
+                        <td>
+                            <input type="checkbox"  >
+                        </td>
+                    </tr>
+                    <tr>
+                        <td rowspan="2">B</td>
+                        <td rowspan="2">
+                            <input type="checkbox" id="ustawa_prawo_och_srod" class="ustawa" title="Podaj podstawę prawną" >
+                        </td>
+                        <td rowspan="2">Ustawa z dnia 27 kwietnia 2001 roku Prawo
+                            ochrony środowiska
+                            <br>
+                            (Dz.&nbsp;U. z 2008 roku
+                            Nr&nbsp;25,&nbsp;poz.&nbsp;150 ze zmianami) </td>
+                        <td><i> Art.&nbsp;269 </i><a href="#edn8" title=""> <i> [8] </i> </a></td>
+                        <td>
+                            <input type="checkbox"  >
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="editable" contenteditable="false">
+                                inny
+                                …… 
+                            </div></td>
+                        <td>
+                            <input type="checkbox" >
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>C</td>
+                        <td>
+                            <input type="checkbox"  id="ustawa_rozporzadzenie_czynnosci" class="ustawa" title="Podaj podstawę prawną">
+                        </td>
+                        <td colspan="3">§ 2. ust. 1 rozporządzenia Ministra Spraw
+                            Wewnętrznych i&nbsp;Administracji z&nbsp;dnia 24 października 2005
+                            r. w sprawie czynności kontrolno-rozpoznawczych przeprowadzanych
+                            przez Państwową Straż Pożarną (Dz.&nbsp;U.&nbsp;Nr
+                            225,&nbsp;poz.&nbsp;1934)</td>
+                    </tr>
+                    <tr>
+                        <td>D</td>
+                        <td>
+                            <input type="checkbox" id="ustawa_inna" class="ustawa" title="Podaj podstawę prawną">
+                        </td>
+                        <td>
+                            <div class="editable" contenteditable="false">
+                                Inna
+                                podstawa prawna – podać jaka ………………………………
+                            </div></td>
+                        <td colspan="2">
+                            <div class="editable" contenteditable="false">
+                                &nbsp;
+                            </div></td>
+                    </tr>
+                </table>
+
+                <table id="rodzaj_kontroli">
+                    <caption class="table_caption">Rodzaj kontroli (<i>wybrać właściwą</i>):</caption>
+                    <tr>
+                        <td>podstawowa</td>
+                        <td>problemowa</td>
+                        <td>doraźna</td>
+                        <td>sprawdzająca</td>
+                        <td>odbiór</td>
+
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox"  ></td>
+                        <td><input type="checkbox"></td>
+                        <td><input type="checkbox"></td>
+                        <td><input type="checkbox"></td>
+                        <td><input type="checkbox"></td>
+
+                    </tr>
+                    <tr >					
+                        <td colspan="1"> <input type="checkbox"/>inna (podać jaka)</td>
+
+                        <td colspan="4"><div class="editable" contenteditable="false">&nbsp;</div></td>
+
+                    </tr></table>
+
+                <table id="kontrole_przeprowadzil">
+                    <caption class="table_caption">
+                        Kontrole przeprowadził:
+                    </caption>
+                    <tr>
+                        <td>Stopień Imię Nazwisko <td>Stanowisko</td>
+                        <td>Nazwa jednostki organizacyjnej</td>
+                        <td>Upoważnienie nr ….. z dnia …………</td>
+                        <td>Wydane przez</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="editable" contenteditable="false">
+                                &nbsp;
+                            </div></td>
+                        <td>
+                            <div class="editable" contenteditable="false">
+                                &nbsp;
+                            </div></td>
+                        <td>
+                            <div class="editable" contenteditable="false">
+                                &nbsp;
+                            </div></td>
+                        <td>
+                            <div class="editable" contenteditable="false">
+                                &nbsp;
+                            </div></td>
+                        <td>
+                            <div class="editable" contenteditable="false">
+                                &nbsp;
+                            </div></td>
+                    </tr>
+
+                </table>
+
+
+
+                <table id="dane_kontrolowanego">
+                    <caption class="table_caption">
+                        Dane kontrolowanego:
+                    </caption>
+                    <tr>
+
+                        <td>Nazwa (imię nazwisko) </td>
+                        <td>Adres lub siedziba kontrolowanego</td>
+
+                    </tr>
+                    <tr>
+
+                        <td><div class="editable" contenteditable="false">
+                                &nbsp;
+                            </div></td>
+                        <td><div class="editable" contenteditable="false">
+                                &nbsp;
+                            </div></td>
+
+
+                    </tr>
+                    <tr>
+
+                        <td colspan="2">
+                            <div>Dane osoby upoważnionej do reprezentowania lub prowadzenia spraw kontrolowanego</div>
+                            <div class="editable" contenteditable="false" id="dane_reprezuntujacego_kontrolowanego">
+                                &nbsp;
+                            </div></td>
+
+
+                    </tr>
+
+                </table>
+
+
+                <table  id="wladajacy_objektem">
+                    <caption class="table_caption">
+
+                    </caption>
+                    <tr>
+
+                        <td><div>
+                                Faktycznie władającym budynkiem, obiektem budowlanym lub terenem
+                            </div>  </td>
+
+                    </tr>
+                    <tr>
+
+                        <td><div class="editable" contenteditable="false" >
+                                &nbsp;
+                            </div>  </td>
+
+                    </tr>
+
+
+                </table>
+
+                <table id="osoba_na_ktora_wydac_decyzje">
+                    <caption class="table_caption" >
+
+                    </caption>
+                    <tr>
+
+                        <td><div>
+                                Użytkownik lub właściciel na którego należy wydać decyzję 
+                            </div>  </td>
+
+                    </tr>
+                    <tr>
+
+                        <td><div class="editable" contenteditable="false" >
+                                &nbsp;
+                            </div>  </td>
+
+                    </tr>
+                </table>
+
+                <table id="osoby_obecne_przy_czynnosciach">
+                    <caption class="table_caption" >
+
+                    </caption>
+                    <tr>
+
+                        <td><div>
+                                Informacje, kto i w jakim charakterze był obecny przy czynnościach
+                            </div>  </td>
+
+                    </tr>
+                    <tr>
+
+                        <td><div class="editable" contenteditable="false" >
+                                &nbsp;
+                            </div>  </td>
+
+                    </tr>
+                </table>
+
+                <table id="inne">
+                    <caption class="table_caption" >
+
+                    </caption>
+                    <tr>
+
+                        <td><div>
+                                Inne
+                            </div>  </td>
+
+                    </tr>
+                    <tr>
+
+                        <td><div class="editable" contenteditable="false" >
+                                &nbsp;
+                            </div>  </td>
+
+                    </tr>
+                </table>
+
+
+                <table>
+                    <caption class="table_caption">
+                        Określenie zakresu czynności kontrolno-rozpoznawczych oraz opis stanu
+                        faktycznego(<i>wybrać właściwe</i>):
+                    </caption>
+                    <tr>
+                        <td>a)</td>
+                        <td>
+                            <input type="checkbox"   >
+                        </td>
+                        <td>niezgodności z przepisami przeciwpożarowymi;</td>
+                    </tr>
+                    <tr>
+                        <td>b)</td>
+                        <td>
+                            <input type="checkbox"  >
+                        </td>
+                        <td>niezgodności rozwiązań technicznych zastosowanych w
+                            obiekcie budowlanym z wymaganiami ochrony przeciwpożarowej;</td>
+                    </tr>
+                    <tr>
+                        <td>c)</td>
+                        <td>
+                            <input type="checkbox"  >
+                        </td>
+                        <td>niezgodności wykonania obiektu budowlanego z projektem
+                            budowlanym - pod względem ochrony przeciwpożarowej;</td>
+                    </tr>
+                    <tr>
+                        <td>d)</td>
+                        <td>
+                            <input type="checkbox"  >
+                        </td>
+                        <td>warunki wpływające na spełnienie wymogów bezpieczeństwa w
+                            zakładzie stwarzającym zagrożenie wystąpienia poważnej awarii
+                            przemysłowej;</td>
+                    </tr>
+                    <tr>
+                        <td>e)</td>
+                        <td>
+                            <input type="checkbox"  >
+                        </td>
+                        <td>wyniki rozpoznawania możliwości i warunków do prowadzenia
+                            działań ratowniczych przez jednostki ochrony przeciwpożarowej;</td>
+                    </tr>
+                    <tr>
+                        <td>f)</td>
+                        <td>
+                            <input type="checkbox"  >
+                        </td>
+                        <td>wyniki rozpoznawania innych miejscowych zagrożeń;</td>
+                    </tr>
+                    <tr>
+                        <td>g)</td>
+                        <td>
+                            <input type="checkbox"  >
+                        </td>
+                        <td>przyczyny powstania i okoliczności rozprzestrzeniania się
+                            pożaru;</td>
+                    </tr>
+                    <tr>
+                        <td>h)</td>
+                        <td>
+                            <input type="checkbox"  >
+                        </td>
+                        <td>przyczyny powstania, okoliczności rozprzestrzenienia się
+                            oraz skutki poważnej awarii przemysłowej,
+                            <br>
+                            z
+                            uwzględnieniem rodzaju i ilości substancji niebezpiecznych, które
+                            przedostały się do środowiska; </td>
+                    </tr>
+                </table>
+                <br>
+                <p class="table_caption object" >Wykaz kontrolowanych obiektów, terenów i urządzeń; (z podziałem na
+                    ZL, PM, IN)</p>
+                <ol id="lista_objektow">
+                    <li id="li_object_nr-1" class=""><div class="li_nazwa_objectu">Bez nazwy 1</div></li>
+
+                </ol>
+
+                <div id="pojemnik_na_objekty"> 
+                    <br>
+                    <p class="table_caption object" >Dane objektu</p>
+
+
+
+
+                </div>                
+
+                <div id="objects_protocols">
+
+                    <div id="tables_object1" class="protocol_table_part protocol1 " >
+
+                    </div>
+                    <div id="tables_object2"  class="protocol_table_part protocol2 ">
+
+                    </div>
+                    <div id="tables_object3"  class="protocol_table_part protocol3 " >
+
+                    </div>
+                    <div id="tables_object4"  class="protocol_table_part protocol4 " >
+
+                    </div>
+                    <div id="tables_object5"  class="protocol_table_part protocol5 " >
+
+                    </div>
+                    <div id="tables_object6"  class="protocol_table_part protocol6 " >
+
+                    </div>
+                    <div id="tables_object7"  class="protocol_table_part protocol7 " >
+
+                    </div>
+                    <div id="tables_object8"  class="protocol_table_part protocol8 " >
+
+                    </div>
+                    <div id="tables_object9"  class="protocol_table_part protocol9 " >
+
+                    </div>
+                    <div id="tables_object10"  class="protocol_table_part protocol10 " >
+
+                    </div>
+
+                </div>
+
+                <br clear="all">
+                <div class="table_caption">Na tym protokół zakończono, informując
+                    kontrolowanego o przysługującym mu prawie wniesienia do niego
+                    umotywowanych zastrzeżeń. Protokół spisano na …… stronach w ……
+                    jednobrzmiących egzemplarzach i po zapoznaniu się z jego treścią
+                    podpisano bez zastrzeżeń * – z zastrzeżeniami * . </div>
+
+                <table>
+                    <caption class="table_caption">Załączniki do
+                        protokółu:</caption>
+                    <tr>
+                        <td>Lp.</td>
+                        <td>Nazwa dokumentu</td>
+                        <td>ilość stron</td>
+                    </tr>
+                    <tr>
+                        <td>1.</td>
+                        <td>
+                            <div class="editable" contenteditable="false">
+                                &nbsp;
+                            </div></td>
+                        <td>
+                            <div class="editable" contenteditable="false">
+                                &nbsp;
+                            </div></td>
+                    </tr>
+                    <tr>
+                        <td>2.</td>
+                        <td>
+                            <div class="editable" contenteditable="false">
+                                &nbsp;
+                            </div></td>
+                        <td>
+                            <div class="editable" contenteditable="false">
+                                &nbsp;
+                            </div></td>
+                    </tr>
+                    <tr>
+                        <td>…</td>
+                        <td>
+                            <div class="editable" contenteditable="false">
+                                &nbsp;
+                            </div></td>
+                        <td>
+                            <div class="editable" contenteditable="false">
+                                &nbsp;
+                            </div></td>
+                    </tr>
+                </table>
+
+                Jeden egzemplarz protokółu pozostawiono kontrolowanemu.
+
+                <table class="podpisy">
+                    <tr class="podpisy">
+                        <td class="podpisy"> ..........................................................</td>
+                        <td class="podpisy" ></td>
+                        <td class="podpisy"> ..........................................................</td>
+                    </tr>
+                    <tr>
+                        <td class="podpisy"><i> (podpis i pieczęć kontrolowanego) </i></td>
+                        <td class="podpisy"></td>
+                        <td class="podpisy"><i> (podpis osoby kontrolujące ) </i></td>
+                    </tr>
+                    <tr>
+                        <td  class="podpisy">
+                            <div class="editable" contenteditable="false">
+                                &nbsp;
+                            </div></td>
+                        <td class="podpisy"></td>
+                        <td class="podpisy">
+                            <div class="editable" contenteditable="false">
+                                 
+                            </div></td>
+                    </tr>
+                    <tr>
+                        <td class="podpisy"> ..........................................................</td>
+                        <td class="podpisy"></td>
+                        <td class="podpisy">
+                            <div class="editable" contenteditable="false">
+                                &nbsp;
+                            </div></td>
+                    </tr>
+                    <tr class="podpisy">
+                        <td class="podpisy"> ..........................................................</td>
+                        <td class="podpisy"></td>
+                        <td class="podpisy"></td>
+                    </tr>
+                    <tr>
+                        <td class="podpisy"><i> (podpis czytelny świadków) </i></td>
+                        <td class="podpisy"></td>
+                        <td class="podpisy"></td>
+                    </tr>
+                </table>
+
+
+
+                <table class="podpisy">
+                    <caption class="table_caption">
+                        POTWIERDZENIE  ODBIORU  PROTOKOŁU
+                    </caption>
+                    <tr class="podpisy">
+                        <td colspan="2" class="podpisy">Protokół  z	 kontroli  przeprowadzonej w dniu (-ach)
+                            ..................................................... otrzymałem (-am)
+                            w dniu .......................................</td>
+                    </tr>
+                    <tr class="podpisy">
+                        <td class="podpisy"></td>
+                        <td class="podpisy" align="right">............................................................................</td>
+                    </tr>
+                    <tr class="podpisy">
+                        <td class="podpisy"></td>
+                        <td class="podpisy" align="right">(czytelny podpis)</td>
+                    </tr>
+                </table>
+
+
+
+
+
+                <table class="podpisy">
+                    <tr class="podpisy">
+                        <td class="podpisy" >........................................................</td>
+                        <td class="podpisy"></td>
+                        <td class="podpisy">…………………………………………….……</td>
+                    </tr>
+                    <tr class="podpisy">
+                        <td class="podpisy">(kontrolowany)</td>
+                        <td class="podpisy"></td>
+                        <td class="podpisy">(kontrolujący)</td>
+                    </tr>
+                </table>
+
+                * niepotrzebne skreślić
+
+                <div id="low_paragrafs">
+                    <br clear="all">
+
+                    <hr align="left" size="1" width="33%">
+
+                    <div id="edn1">
+
+                        <a href="#_ednref1" title=""> [1] </a>       rocznego planu
+                        czynności kontrolno-rozpoznawczych;
+
+                    </div>
+
+                    <div id="edn2">
+
+                        <a href="#_ednref2" title=""> [2] </a>       zgłoszenia zakładu o
+                        zwiększonym albo dużym ryzyku wystąpienia awarii przemysłowej, o
+                        którym mowa w art. 250 ustawy z dnia 27 kwietnia 2001 r. - Prawo
+                        ochrony środowiska (Dz. U. z 2008 r. Nr 25, poz. 150, ze zm.);
+
+                    </div>
+
+                    <div id="edn3">
+
+                        <a href="#_ednref3" title=""> [3] </a>       zlecenia starosty, o
+                        którym mowa w art. 35 ust. 3 pkt 5 ustawy z dnia 5 czerwca 1998 r.
+                        o samorządzie powiatowym;
+
+                    </div>
+
+                    <div id="edn4">
+
+                        <a href="#_ednref4" title=""> [4] </a>       polecenia sądu,
+                        prokuratora lub Najwyższej Izby Kontroli;
+
+                    </div>
+
+                    <div id="edn5">
+
+                        <a href="#_ednref5" title=""> [5] </a>       zgłoszenia obiektu,
+                        dla którego przepisy prawa wymagają wydania przez organy Państwowej
+                        Straży Pożarnej opinii lub zajęcia przez nie stanowiska w zakresie
+                        ochrony przeciwpożarowej;
+
+                    </div>
+
+                    <div id="edn6">
+
+                        <a href="#_ednref6" title=""> [6] </a>       zawiadomienia wójta,
+                        burmistrza lub prezydenta miasta o stwierdzeniu zagrożenia życia
+                        lub zdrowia, niebezpieczeństwa powstania szkód majątkowych w
+                        znacznych rozmiarach lub naruszenia środowiska, o którym mowa w
+                        art. 78 ustawy z dnia 2 lipca 2004 r. o swobodzie działalności
+                        gospodarczej (Dz. U. z 2007 r. Nr 155, poz. 1095, ze zm.);
+
+                    </div>
+
+                    <div id="edn7">
+
+                        <a href="#_ednref7" title=""> [7] </a>       wystąpienia istotnych
+                        nowych okoliczności w zakresie stanu bezpieczeństwa na terenie
+                        działania komendy powiatowej (miejskiej) Państwowej Straży
+                        Pożarnej;
+
+                    </div>
+
+                    <div id="edn8">
+
+                        <a href="#_ednref8" title=""> [8] </a>       Art.&nbsp;269.&nbsp;
+                        Komendant powiatowy Państwowej Straży Pożarnej, w ramach czynności
+                        kontrolno-rozpoznawczych przeprowadzanych, co najmniej raz w roku w
+                        zakładzie stwarzającym zagrożenie wystąpienia awarii przemysłowych,
+                        ustala spełnienie wymogów bezpieczeństwa,
+                        <br>
+                        a w
+                        szczególności czy: 1)&nbsp;podjęto środki zapobiegające wystąpieniu
+                        awarii przemysłowej; 2)&nbsp;zapewniono wystarczające środki
+                        ograniczające skutki awarii przemysłowej w zakładzie i poza jego
+                        granicami, uwzględniając skutki transgraniczne; 3)&nbsp;dane
+                        zawarte w dokumentach, o których mowa w ustawie, takich jak
+                        zgłoszenie zakładu o zwiększonym ryzyku lub dużym ryzyku, program
+                        zapobiegania awariom, raport o bezpieczeństwie, wewnętrzny plan
+                        operacyjno-ratowniczy, informacje niezbędne do opracowania
+                        zewnętrznego planu operacyjno-ratowniczego, przedkładane właściwym
+                        organom Państwowej Straży Pożarnej — są rzetelne i odzwierciedlają
+                        stan bezpieczeństwa w zakładzie.
+
+                    </div>
+
+                    <div id="edn9">
+
+                        <a href="#_ednref9" title=""> [9] </a>       MI (Dz. U. nr 75 poz.
+                        690 ze zm.) § 209.&nbsp;3 Wymagania dotyczące bezpieczeństwa
+                        pożarowego budynków oraz części budynków stanowiących odrębne
+                        strefy pożarowe, określanych jako PM, odnoszą się również do
+                        garaży, hydroforni, kotłowni, węzłów ciepłowniczych, rozdzielni
+                        elektrycznych, stacji transformatorowych, central telefonicznych
+                        oraz innych o podobnym przeznaczeniu.
+
+                    </div>
+
+                    <div id="edn10">
+
+                        <a href="#_ednref10" title=""> [10] </a>     MSWiA (Dz. U. Nr 109,
+                        poz. 719) §&nbsp;7.&nbsp;1. Przy używaniu lub przechowywaniu
+                        materiałów niebezpiecznych pożarowo należy: 1)&nbsp;wykonywać
+                        wszystkie czynności związane z wytwarzaniem, przetwarzaniem,
+                        obróbką, transportem lub składowaniem materiałów niebezpiecznych
+                        zgodnie
+                        <br>
+                        z warunkami ochrony przeciwpożarowej określonymi w
+                        instrukcji bezpieczeństwa pożarowego, o&nbsp;której mowa w § 6, lub
+                        zgodnie z warunkami określonymi przez producenta;
+
+                        2)&nbsp;utrzymywać na stanowisku pracy ilość materiału
+                        niebezpiecznego pożarowo nie większą niż dobowe zapotrzebowanie lub
+                        dobowa produkcja, jeżeli przepisy szczególne nie stanowią inaczej;
+
+                        3)&nbsp;przechowywać zapas materiałów niebezpiecznych pożarowo
+                        przekraczający wielkość określoną w pkt 2 w oddzielnym magazynie
+                        przystosowanym do takiego celu; 4)&nbsp;przechowywać materiały
+                        niebezpieczne pożarowo w sposób uniemożliwiający powstanie pożaru
+                        lub wybuchu w następstwie procesu składowania lub wskutek
+                        wzajemnego oddziaływania; 5)&nbsp;przechowywać ciecze o
+                        temperaturze zapłonu poniżej 328,15 K (55°C) wyłącznie
+                        w&nbsp;pojemnikach, urządzeniach i instalacjach przystosowanych do
+                        tego celu, wykonanych z materiałów co najmniej trudno zapalnych,
+                        odprowadzających ładunki elektryczności statycznej, wyposażonych w
+                        szczelne zamknięcia
+                        <br>
+                        i zabezpieczonych przed stłuczeniem.
+
+                        §&nbsp;7.&nbsp;2. &nbsp;Materiałów niebezpiecznych pożarowo nie
+                        przechowuje się w pomieszczeniach piwnicznych, na poddaszach i
+                        strychach, w obrębie klatek schodowych i korytarzy oraz w innych
+                        pomieszczeniach ogólnie dostępnych, jak również na tarasach,
+                        balkonach i loggiach. §&nbsp;8.&nbsp;1. Podczas przechowywania
+                        cieczy o temperaturze zapłonu poniżej 328,15 K (55°C) w budynkach,
+                        w strefach pożarowych zaliczonych
+                        <br>
+                        do kategorii zagrożenia
+                        ludzi: 1)&nbsp;jest dopuszczalne przechowywanie w jednej strefie
+                        pożarowej, zakwalifikowanej do kategorii zagrożenia ludzi innej niż
+                        ZL IV oraz o przeznaczeniu innym
+                        <br>
+                        niż handlowo-usługowe do
+                        10 dm<sup>3</sup> cieczy o temperaturze zapłonu poniżej 294,15 K
+                        (21°C) oraz do 50 dm<sup>3</sup> cieczy o temperaturze zapłonu
+                        294,15÷328,15 K (21÷55°C), a w mieszkaniach odpowiednio do 5 i do
+                        20 dm<sup>3</sup> cieczy; 2)&nbsp;jest dopuszczalne przechowywanie
+                        w pomieszczeniach handlowo-usługowych cieczy o temperaturze zapłonu
+                        do 328,15 K (55°C) w takiej ilości, że gęstość obciążenia ogniowego
+                        stworzona przez te ciecze nie przekroczy 500 MJ/m<sup>2</sup>;
+
+                        3)&nbsp;jest dopuszczalne przechowywanie w pomieszczeniach
+                        handlowo-usługowych stanowiących odrębną strefę pożarową cieczy
+                        palnych w ilościach większych
+                        <br>
+                        niż określone w pkt 2, pod
+                        warunkiem spełniania przez te pomieszczenia wymagań
+                        techniczno-budowlanych dotyczących stref pożarowych produkcyjnych
+                        <br>
+                        i magazynowych; 4)&nbsp;w pomieszczeniach handlowo-usługowych
+                        ciecze palne powinny być przechowywane w szczelnych naczyniach,
+                        zabezpieczonych przed stłuczeniem,
+                        <br>
+                        a ich sprzedaż należy
+                        prowadzić bez rozlewania. §&nbsp;8.&nbsp;2. Podczas przechowywania
+                        cieczy o temperaturze zapłonu poniżej 373,15 K (100°C)
+                        w&nbsp;garażach: 1)&nbsp;o powierzchni powyżej 100 m<sup>2</sup>
+                        jest dopuszczalne przechowywanie tych cieczy tylko wtedy, gdy są
+                        niezbędne przy eksploatacji pojazdu i są przechowywane
+                        <br>
+                        w
+                        jednostkowych opakowaniach stosowanych w handlu detalicznym;
+
+                        2)&nbsp;nie jest dopuszczalne przelewanie paliwa oraz napełnianie
+                        nim zbiorników paliwa w&nbsp;pojazdach; 3)&nbsp;wolno stojących
+                        wykonanych z materiałów niepalnych o powierzchni do 100 m<sup>2</sup>
+                        jest dopuszczalne przechowywanie do 200 dm<sup>3</sup> cieczy o
+                        temperaturze zapłonu poniżej 328,15 K (55°C); 4)&nbsp;o powierzchni
+                        do 100 m<sup>2</sup> innych niż wymienione w pkt 3 jest
+                        dopuszczalne przechowywanie do 20 dm<sup>3</sup> cieczy o
+                        temperaturze zapłonu poniżej 294,15 K (21°C) lub do 60 dm<sup>3</sup>
+                        cieczy o temperaturze zapłonu 294,15÷373,15 K (21÷100°C);
+
+                        5)&nbsp;ciecze powinny być przechowywane w naczyniach metalowych
+                        lub innych dopuszczonych do tego celu, posiadających szczelne
+                        zamknięcia.
+
+                    </div>
+
+                </div>
+
+                <div id="pojemnik_szablonow">
+                    <table>
+                        <tr id="wiersz_wyboru_rodzaju_objektu" >
+                            <td colspan="4">
+
+                                <div>
+                                    <select id="grupa_objektow" style="width: 40%">
+                                        <option value="">--</option>
+                                        <option value="uzyt_publicz">użyteczności publicznej</option>
+                                        <option value="zamiesz_zbiorowego">zamieszkania zbiorowego</option>
+                                        <option value="mieszkalne_wielorodz">mieszkalne
+                                            wielorodzinne</option>
+                                        <option value="prod_magaz">produkcyjne i magazynowe</option>
+                                        <option value="wypoczynku_dzieci">wypoczynku dzieci i
+                                            młodzieży</option>
+
+                                    </select> <select id="rodzaj_objektu" style="width: 40%">
+                                        <option value="">--</option>
+                                        <option value="szkoly" class="uzyt_publicz">szkoły</option>
+                                        <option value="nauk_dydakt" class="uzyt_publicz">nauk.-dydakt.
+                                            szkół wyższych</option>
+                                        <option value="zlobki" class="uzyt_publicz">żłobki i
+                                            przedszkola</option>
+                                        <option value="szpitale" class="uzyt_publicz">szpitale</option>
+                                        <option value="adm_biurowe" class="uzyt_publicz">administracyjno
+                                            - biurowe</option>
+                                        <option value="adm_biurowe_wysokie" class="uzyt_publicz">administracyjno
+                                            - biurowe wysokie i wysokościowe</option>
+                                        <option value="domy_towarowe" class="uzyt_publicz">domy
+                                            towarowe i supermarkety</option>
+                                        <option value="dworce" class="uzyt_publicz">dworce
+                                            towarowe i kolejowe</option>
+                                        <option value="koscioly" class="uzyt_publicz">kościoły</option>
+                                        <option value="kina" class="uzyt_publicz">kina</option>
+                                        <option value="teatry" class="uzyt_publicz">teatry, sale
+                                            konertowe itp.</option>
+                                        <option value="dyskoteki" class="uzyt_publicz">dyskoteki i
+                                            lokale gastronomiczne</option>
+                                        <option value="widowiskowo_sportowe" class="uzyt_publicz">widowiskowo
+                                            sportowe</option>
+                                        <option value="muzea" class="uzyt_publicz">muzea</option>
+                                        <option value="biblioteki" class="uzyt_publicz">biblioteki</option>
+
+
+                                        <option value="hotele" class="zamiesz_zbiorowego">hotele
+                                            motele, w tym wysokie i wysokościowe</option>
+                                        <option value="domy_wczasowe" class="zamiesz_zbiorowego">domy
+                                            wczasowe i pensjonaty</option>
+                                        <option value="internaty" class="zamiesz_zbiorowego">domy
+                                            studenckie i internaty</option>
+                                        <option value="domy_poprawcze" class="zamiesz_zbiorowego">domy
+                                            porawcze</option>
+                                        <option value="domy_dziecka" class="zamiesz_zbiorowego">domy
+                                            dziecka</option>
+                                        <option value="domy_pomocy_spolecznej" class="zamiesz_zbiorowego">domy
+                                            pomocy społecznej</option>
+
+                                        <option value="mieszkalne" class="mieszkalne_wielorodz">mieszkalne,
+                                            w tym wysokie i wysokościowe</option>
+
+                                        <option value="wypoczynku_dzieci" class="wypoczynku_dzieci">wypoczynku
+                                            dzieci i młodzieży</option>
+
+                                        <option value="produkcyjno_magazyn" class="prod_magaz">produkcyjne
+                                            i magazynowe</option>
+                                        <option value="stacje_paliw" class="prod_magaz">stacje
+                                            paliw i gazu płynnego</option>
+                                        <option value="bazy_gazu" class="prod_magaz">bazy i
+                                            rozlewnie gazu płynnego</option>
+                                        <option value="budynki_produkcyjne" class="prod_magaz">budynki
+                                            produkcyjne</option>
+                                        <option value="hurtownie" class="prod_magaz">magazyny i
+                                            hurtownie</option>
+                                        <option value="gospodarstwa" class="prod_magaz">gospodarstwa
+                                            rolne</option>
+
+
+                                    </select> <select id="kategoria_objektu" style="width: 15%">
+                                        <option value="">--</option>
+                                        <option value="ZLI"
+                                                class="domy_towarowe dworce koscioly kina teatry dyskoteki widowiskowo_sportowe muzea biblioteki">ZL
+                                            I</option>
+                                        <option value="ZLII" class="zlobki szpitale domy_pomocy_spolecznej">ZL
+                                            II</option>
+                                        <option value="ZLIII"
+                                                class="szkoly nauk_dydakt adm_biurowe adm_biurowe_wysokie domy_towarowe dworce koscioly kina teatry dyskoteki widowiskowo_sportowe muzea biblioteki">ZL
+                                            III</option>
+                                        <option value="ZLIV" class="mieszkalne">ZL IV</option>
+                                        <option value="ZLV"
+                                                class="hotele domy_wczasowe internaty domy_poprawcze domy_dziecka domy_pomocy_spolecznej wypoczynku_dzieci">ZL
+                                            V</option>
+                                        <option value="PM"
+                                                class="produkcyjno_magazyn stacje_paliw bazy_gazu budynki_produkcyjne hurtownie">PM</option>
+                                        <option value="IN" class="gospodarstwa">IN</option>
+                                    </select> 
+                                    <!--
+                                    <select id="kategoria_objektuII">
+                                                <option value="">--</option>
+                                                <option value="ZLI"
+                                                        class="szkoly nauk_dydakt adm_biurowe adm_biurowe_wysokie">ZL
+                                                        I</option>
+                                                <option value="ZLII" class="szkoly">ZL II</option>
+                                                <option value="ZLIII" class="stacje_paliw">ZL III</option>
+        
+        
+                                </select> -->
+                                </div>
+                                <div id="opis_wiersza_rodzaju_budynku_budynku" title="Opis" contenteditable="true" class="editable">Opis</div>
+                            </td>
+                        </tr>
+                    </table>
+
+                    <div id="objekt_nr" class="object dynamic">
+
+                        <table >
+                            <caption class="table_caption">
+
+                            </caption>
+
+                            <tr>
+                                <td>
+                                    <div>Data kontroli</div>
+                                    <div><input type="text" id="data_kontroli" class="dynamic" /></div>
+                                </td>
+                                <td>
+                                    <div>Nazwa objektu</div>
+                                    <div><input class="dynamic" id="nazwa_obiektu" type="text" required="required"/></div>
+                                </td>
+                                <td>
+                                    <div>
+                                        Wysokość budynku
+                                    </div>
+                                    <div>
+                                        <select class="dynamic" id="wysokosc_budkunku">
+                                            <option value="">--</option>
+                                            <option value="N">Niski</option>
+                                            <option value="SW">Średnowysoki</option>
+                                            <option value="W">Wysoki</option>
+                                            <option value="WW">Wysokościowy</option>
+                                        </select>
+                                    </div>
+
+                                </td>
+                                <td>
+                                    <div>
+                                        Rodzaj budyku
+                                    </div>
+                                    <div class="dynamic" id="rodzaj_objectu">
+
+                                    </div>
+                                </td>
+                                <td>
+                                    <div>
+                                        Czy zabytek
+                                    </div>
+                                    <div>
+                                        <input class="dynamic" type="checkbox" id="czy_zabytek"/>
+                                    </div>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td colspan="3">
+                                    <div>Adres obiektu który podlega kontroli</div>
+                                    <div id="adres_objektu" class="editable dynamic" contenteditable="true" style="width: 100%;" >&nbsp;</div>
+                                </td>
+                                <td colspan="2">
+                                    <div>Współrzędne geograficzne</div>
+                                    <div><input class="dynamic" type="text" id="dlugosc_geogr" />
+                                        <input class="dynamic" type="text" id="szerokosc_geogr"/>
+                                    </div>
+                                </td>
+
+
+
+                            </tr>
+
+                            <tr>
+                                <td colspan="5">
+                                    <div>Komentarz:</div>
+
+                                    <div id="komentarz_objektu" class="editable dynamic" contenteditable="false">&nbsp;</div>
+                                </td>
+                            </tr>
+
+
+
+
+                            <!--
+                            
+            
+                            <tr class="tableheader">
+                                <td id="lp" class="dynamic" rowspan="2" >1</td>
+                                <td></td>
+                                <td>Nazwa obiektu</td>
+                                <td>Rodzaj (ZL, PM, IN)</td>
+                                <td>Wysokość budynku</td>
+                                <td>Zabytek</td>
+                                <td colspan="2">(do każdego obiektu komentarz) </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    
+                              
+                               
+                                <td>
+                                   
+                                </td>
+                                <td><div class="editable" contenteditable="false">
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    </div>
+                                </td>
+                                <td align="right">
+                                    <button type="button" class="dynamic edytuj_protokol_button" id="edytuj_protokol_button"  >
+                                        Aktywuj
+                                    </button></td>
+            
+            
+            
+            
+            
+                            </tr> -->
+                            <!-- ładowanie nowego wiersza -->	
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+            <div id="right" class="column">
+                <div><button  id="kontrola" type="submit"  value="Kontrola formularza"> Kontola  </button></div>
+
+                <div id="lista_bledow">
+                    <p>Lista błedów</p>
+                </div>
+            </div>
+        </form>
+        <div id="spis_tresci_more" >
+            <ol class="menu">
+                <li class="menu">
+                    <a name="#title" class="menu" href="#title"  >Strona
+                        tytułowa</a>
+                </li>
+                <li class="menu">
+                    <a class="menu dynamic"  href="#chapterI"  >I.Przestrzeganie
+                        przepisów o ochronie przeciwpożarowej</a>
+
+                    <ol class="menu">
+                        <li class="menu">
+                            <a class="menu dynamic"  href="#chapter1"  >1.
+                                Dokumentacja z zakresu ochronu p.poż.</a>
+                            <ol class="menu">
+                                <li class="menu">
+                                    <a class="menu dynamic"  href="#table11"  >1.1.
+                                        Instrukcja bezpieczeństwa.</a>
+                                </li>
+                                <li class="menu">
+                                    <a class="menu dynamic"  href="#table12"  >1.2.
+                                        Znajomość instrukcji.</a>
+                                </li>
+                                <li class="menu">
+                                    <a class="menu dynamic"  href="#table13"  >1.3.
+                                        Osoby odpowiedzialne.</a>
+                                </li>
+                            </ol>
+                        </li>
+
+                        <li class="menu">
+                            <a class="menu dynamic"  href="#chapter2"  >2.
+                                Instrukcje postępowania:</a>
+                        </li>
+                        <li class="menu">
+                            <a class="menu dynamic"  href="#chapter3"  >3.
+                                Wykonanie poleceń nakazanych decyzją komendanta:</a>
+                        </li>
+                    </ol>
+                </li>
+
+                <li class="menu">
+                    <a class="menu dynamic"  href="#chapterII"  >II.Rozpoznanwanie
+                        zagrożeń.</a>
+
+                    <ol class="menu">
+                        <li class="menu">
+                            <a class="menu dynamic"  href="#chapter4"  >4.
+                                Wykonanie poleceń nakazanych decyzją komendanta:</a>
+                            <ol class="menu">
+                                <li class="menu">
+                                    <a class="menu dynamic"  href="#table41"  >4.1.Występowanie
+                                        nieprawidłowości, które zagrażają życiu ludzi:</a>
+                                </li>
+                                <li class="menu">
+                                    <a class="menu dynamic" href="#table42"  >4.2.
+                                        Warunki ewakuacji ludzi z budynku.</a>
+                                </li>
+                                <li class="menu">
+                                    <a class="menu dynamic"  href="#table43"  >4.3.
+                                        Oznakowanie dróg ewakuacyjnych.</a>
+                                </li>
+                                <li class="menu">
+                                    <a class="menu dynamic"  href="#table44"  >4.4.
+                                        Oznakowanie znakami bezpieczeństwa.</a>
+                                </li>
+                                <li class="menu">
+                                    <a class="menu dynamic"  href="#table45"  >4.5.
+                                        Sposób wykorzystania pomieszczeń technicznych.</a>
+                                </li>
+                                <li class="menu">
+                                    <a class="menu dynamic"  href="#table46"  >4.6.
+                                        Sposób wykorzystania strychów.</a>
+                                </li>
+                                <li class="menu">
+                                    <a class="menu dynamic"  href="#table47"  >4.7.
+                                        Sposób wykorzystania piwnic.</a>
+                                </li>
+                            </ol>
+                        </li>
+                        <li class="menu">
+                            <a class="menu dynamic"  href="#chapter5"  >5.
+                                Spełnienie wymagań budowlanych w budynkach.</a>
+                            <ol class="menu">
+                                <li class="menu">
+                                    <a class="menu dynamic"  href="#table51"  >5.1.
+                                        Odporność pożarowa budynków, odporność ogniowa elementów
+                                        budowlanych.</a>
+                                </li>
+                                <li class="menu">
+                                    <a class="menu dynamic"  href="#table52"  >5.2.
+                                        Strefy pożarowe i oddzielenia przeciwpożarowe.</a>
+                                </li>
+                                <li class="menu">
+                                    <a class="menu dynamic"  href="#table53"  >5.3.
+                                        Składowanie, przechowywanie materiałów niebezpiecznych
+                                        pożarowo.</a>
+                                </li>
+                                <li class="menu">
+                                    <a class="menu dynamic"  href="#table54"  >5.4.
+                                        Składowanie, przechowywanie materiałów palnych.</a>
+                                </li>
+                                <li class="menu">
+                                    <a class="menu dynamic"  href="#table55"  >5.5.
+                                        Przestrzeganie zakazu używania ognia i palenia tytoniu.</a>
+                                </li>
+                                <li class="menu">
+                                    <a class="menu dynamic"  href="#table56"  >5.6.
+                                        Usytuowanie budynków i placów składowych.</a>
+                                </li>
+                                <li class="menu">
+                                    <a class="menu dynamic"  href="#table57"  >5.7.
+                                        Strefy zagrożenia wybuchem.</a>
+                                </li>
+                                <li class="menu">
+                                    <a class="menu dynamic"  href="#table58"  >5.8.
+                                        Przestrzeganie bezpieczeństwa pożarowego podczas wykonywania
+                                        prac.</a>
+                                </li>
+                            </ol>
+                        </li>
+
+                        <li class="menu">
+                            <a class="menu dynamic"  href="#chapter6"  >6.
+                                Zachowanie warunków bezpieczeństwa pożarowego w budynkach i
+                                strefach (PM i IN).</a>
+                            <ol class="menu">
+                                <li class="menu">
+                                    <a class="menu dynamic"  href="#table61"  >6.1.
+                                        Warunki ewakuacji.</a>
+                                </li>
+                                <li class="menu">
+                                    <a class="menu dynamic"  href="#table62"  >6.2.
+                                        Spełnienie wymagań dot. rozdzielnego przechowywania materiałów.</a>
+                                </li>
+                                <li class="menu">
+                                    <a class="menu dynamic"  href="#table63"  >6.3.
+                                        Nieprawidłowy sposób przechowywania materiałów niebezpiecznych
+                                        pożarowo.</a>
+                                </li>
+                                <li class="menu">
+                                    <a class="menu dynamic"  href="#table64"  >6.4.
+                                        Nieprawidłowy sposób użytkowania i zabezpieczenia
+                                        przeciwpożarowego.</a>
+                                </li>
+                                <li class="menu">
+                                    <a class="menu dynamic"  href="#table65"  >6.5.
+                                        Palne odpady.</a>
+                                </li>
+
+                            </ol>
+                        </li>
+
+                        <li class="menu">
+                            <a class="menu dynamic"  href="#chapter7"  >7.
+                                Zachowanie warunków bezpieczeństwa pożarowego przy użytkowaniu
+                                urządzeń i instalacji w obiektach.</a>
+                            <ol class="menu">
+                                <li class="menu">
+                                    <a class="menu dynamic"  href="#table71"  >7.1.
+                                        Posługiwanie się przenośnymi odbiornikami energii elektrycznej.</a>
+                                </li>
+                                <li class="menu">
+                                    <a class="menu dynamic"  id="able72" href="#table72"  >7.2.
+                                        Instalacje elektryczne.</a>
+                                </li>
+                                <li class="menu">
+                                    <a class="menu dynamic"  href="#table73"  >7.3.
+                                        Instalacje odgromowe.</a>
+                                </li>
+                                <li class="menu">
+                                    <a class="menu dynamic"  href="#table74"  >7.4.
+                                        Urządzenia i instalacje wentylacyjne.</a>
+                                </li>
+                                <li class="menu">
+                                    <a class="menu dynamic"  href="#table75"  >7.5.
+                                        Urządzenia gazowe.</a>
+                                </li>
+                                <li class="menu">
+                                    <a class="menu dynamic"  href="#table76"  >7.6.
+                                        Urządzenia ogrzewcze.</a>
+                                </li>
+                                <li class="menu">
+                                    <a class="menu dynamic"  href="#table77"  >7.7.
+                                        Przewody dymowe i spalinowe.</a>
+                                </li>
+                                <li class="menu">
+                                    <a class="menu dynamic"  href="#table78"  >7.8.
+                                        Urządzenia i aparaty technologiczne.</a>
+                                </li>
+                            </ol>
+                        </li>
+
+                    </ol>
+                </li>
+
+                <li class="menu">
+                    <a class="menu dynamic"  href="#chapterIII"  >III.
+                        Przygotowanie obiektu do zwalczania pożaru i miejscowych zagrożeń.</a>
+                    <ol class="menu">
+                        <li class="menu">
+                            <a class="menu dynamic"  href="#chapter8"  >8.
+                                Poziom wyszkolenia stanu osobowego w zakresie ochrony
+                                przeciwpożarowej.</a>
+                            <ol class="menu">
+                                <li class="menu">
+                                    <a class="menu dynamic"  href="#table81"  >8.1.
+                                        Zapoznanie przez pracowników zakładu (obiektu) z przepisami ochrony przeciwpożarowymi:</a>
+                                </li>
+                                <li class="menu">
+                                    <a class="menu dynamic"  href="#table82"  >8.2.
+                                        Znajomość treści dokumentów z zakresu ochrony przeciwpożarowej.</a>
+                                </li>
+                                <li class="menu">
+                                    <a class="menu dynamic"  href="#table83"  >8.3.
+                                        Praktyczne sprawdzenie organizacji oraz warunków ewakuacji.</a>
+                                </li>
+                                <li class="menu">
+                                    <a class="menu dynamic"  href="#table84"  >8.4.
+                                        Sprawdzenie znajomości (użycia, lokalizacji)  urządzeń przeciwpożarowych i gaśnic.</a>
+                                </li>
+                            </ol>
+                        </li>
+
+                        <li class="menu">
+                            <a class="menu dynamic"  href="#chapter9"  >9.
+                                Urządzenia gaśniczne.</a>
+                            <ol class="menu">
+                                <li class="menu">
+                                    <a class="menu dynamic"  href="#table91"  >9.1.
+                                        Urządzenia przeciwpożarowe i gaśnice.</a>
+                                </li>
+                                <li class="menu">
+                                    <a class="menu dynamic"  href="#table92"  >9.2.
+                                        Stałe lub półstałe urządzenia gaśnicze.</a>
+                                </li>
+                                <li class="menu">
+                                    <a class="menu dynamic"  href="#table93"  >9.3.
+                                        System sygnalizacji pożarowej.</a>
+                                </li>
+                                <li class="menu">
+                                    <a class="menu dynamic"  href="#table94"  >9.4.
+                                        Dźwiękowy system ostrzegawczy.</a>
+                                </li>
+                                <li class="menu">
+                                    <a class="menu dynamic"  href="#table95"  >9.5.
+                                        Hydranty wewnętrzne.</a>
+                                </li>
+                                <li class="menu">
+                                    <a class="menu dynamic"  href="#table96"  >9.6.
+                                        Hydranty zewnętrzne.</a>
+                                </li>
+                                <li class="menu">
+                                    <a class="menu dynamic"  href="#table97"  >9.7.
+                                        Pompownia przeciwpożarowa.</a>
+                                </li>
+                                <li class="menu">
+                                    <a class="menu dynamic"  href="#table98"  >9.8.
+                                        Przeciwpożarowe klapy odcinające.</a>
+                                </li>
+                                <li class="menu">
+                                    <a class="menu dynamic"  href="#table99"  >9.9.
+                                        Urządzenia oddymiające.</a>
+                                </li>
+                                <li class="menu">
+                                    <a class="menu dynamic"  href="#table910"  >9.10.
+                                        Drzwi, bramy lub kurtyny przeciwpożarowe.</a>
+                                </li>
+                                <li class="menu">
+                                    <a class="menu dynamic"  href="#table911"  >9.11.
+                                        Zbiorniki przeciwpożarowe.</a>
+                                </li>
+                                <li class="menu">
+                                    <a class="menu dynamic"  href="#table912"  >9.12.
+                                        Instalacja oświetlenia awaryjnego.</a>
+                                </li>
+                                <li class="menu">
+                                    <a class="menu dynamic"  href="#table913"  >9.13.
+                                        Przeciwpożarowy wyłącznik prądu.</a>
+                                </li>
+                                <li class="menu">
+                                    <a class="menu dynamic"  href="#table914"  >9.14.
+                                        Urządzenia zabezpieczające przed powstaniem wybuchu.</a>
+                                </li>
+                                <li class="menu">
+                                    <a class="menu dynamic"  href="#table915"  >9.15.
+                                        Gaśnice.</a>
+                                </li>
+
+                            </ol>
+                        </li>
+
+                    </ol>
+                </li>
+            </ol>
+
+        </div>
+
+        <!-- <div id="modal_nazwa_objektu" class="modal">
+             <form id="form_nazwa_objektu">
+                 <p>Podaj nazwe objektu</p>
+                 <input id="nazwa_objektu" type="text" required=""  />
+             </form>
+ 
+         </div> -->
+
+    </body>
+
+</html>
+
