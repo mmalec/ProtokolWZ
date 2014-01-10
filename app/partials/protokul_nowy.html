@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<div appheader></div>
+
+<div class="well">
+<div class="alert alert-info">Podaj nazwę (tytuł) protokołu. </div>
+<form name="nowyProtokul" novalidate >
+    <div ng-class="{error: nowyProtokul.tytulProtokolu.$dirty && nowyProtokul.tytulProtokolu.$invalid}">
+    <input class="form-control" type="text" ng-model="tytulProtokolu" ng-minlength=5 required/>
+    </div>
+    <button class="btn-success" ng-show="nowyProtokul.$valid">Zapisz</button>
+</form>
+<div>Dlugosc {{dlugosc}}</div>
+</div>
+Nowy protokul

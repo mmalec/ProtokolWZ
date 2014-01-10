@@ -24,13 +24,13 @@ angular.module('myApp.controllers', []).
                     $scope.text = "To jest text"
                     $scope.$apply();
                     alert("i " + i)
-                    defer.resolve(function(){
+                    defer.resolve(function() {
                         alert("w resolve")
                     });
                 })
                 alert("promise " + defer.promise)
                 var protokul = $rootScope.protokul;
-                
+
                 //$scope.i = defer.promise
                 //   });
 
@@ -43,11 +43,23 @@ angular.module('myApp.controllers', []).
 
             }
             $scope.name = "trzecie"
-            $scope.$watch('pierwszy', function (){
+            $scope.$watch('pierwszy', function() {
                 //alert("zmiana "+ $scope.pierwszy)
             })
             //alert(name)
         })
         .controller('MyCtrl2', [function() {
 
-            }]);
+            }])
+        .controller('ProtokolyCtrl', function() {
+
+        })
+        .controller('ProtokulNowyCtrl', function($rootScope, $scope) {
+            
+            $scope.$watch('tytulProtokolu', function(){
+                 $scope.dlugosc = $scope.tytulProtokolu.length
+                 
+            })
+           
+        })
+        ;

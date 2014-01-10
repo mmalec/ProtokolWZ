@@ -14,17 +14,19 @@ var app = angular.module('myApp', [
                 $routeProvider
                         .when('/view1/', {templateUrl: 'partials/partial1.html', controller: 'MyCtrl1'})
                         .when('/view2/', {templateUrl: 'partials/partial2.html', controller: 'MyCtrl2'})
+                        .when('/protokoly/', {templateUrl: 'partials/protokoly.html', controller: 'ProtokolyCtrl'})
+.when('/protokul/nowy/', {templateUrl: 'partials/protokul_nowy.html', controller: 'ProtokulNowyCtrl'})
                         .otherwise({redirectTo: '/view1/'});
             }]);
 
 
-app.run( function($rootScope) {
+app.run(function($rootScope) {
     var protokul = {
-    nazwa:"Moja nazwa",
-    objekt:{
-            id:"1"
+        nazwa: "Moja nazwa",
+        objekt: {
+            id: "1"
+        }
     }
-}
 
     var db = new PouchDB('protocols');
     db.put({
@@ -43,10 +45,10 @@ app.run( function($rootScope) {
     db.info(function(err, info) {
         console.log(info.db_name);
     });
-    $rootScope.db=db
-    
+    $rootScope.db = db
+
     $rootScope.protokul = protokul;
-    
+
 
 
 })
