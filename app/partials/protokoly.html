@@ -4,15 +4,46 @@ To change this license header, choose License Headers in Project Properties.
 To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
-<div appheader ></div>
-Tu Będą protokoły
-<div class="list-group">
-  <a href="#" class="list-group-item ">
-    Cras justo odio
-  </a>
-  <a href="#" class="list-group-item active">Dapibus ac facilisis in</a>
-  <a href="#" class="list-group-item">Morbi leo risus</a>
-  <a href="#" class="list-group-item">Porta ac consectetur ac</a>
-  <a href="#" class="list-group-item">Vestibulum at eros</a>
+<div appheader></div>
+
+<div class="container bs-docs-container">
+
+    <div class="row">
+        <div class="col-md-3">
+            <div class="bs-sidebar hidden-print affix" role="complementary">
+                <ul class="nav bs-sidenav">
+                   
+                    <li class="">
+                        <a  href="#/protokul/nowy" >Nowy protokłu</a>
+                    </li>
+                    <li class="active">
+                        <a href="#/protokoly">Lista protokołów</a>
+                    </li>
+                    <li></li>
+                </ul>
+            </div>
+        </div>
+        <div class="col-md-9" role="main">
+            <h1>Lista protokołów</h1>
+            <div class="panel panel-default">
+              
+                <div class="panel-heading">Podaj nazwę (tytuł) protokołu. UUID {{uuid}}
+                    <input class="form-control" type="search" ng-model="q"/></div>
+                <div class="panel-body ">
+                    
+                    <ul class="">
+                    <li class="animate-repeat" ng-repeat="protokul in protokoly | filter:q track by $index ">
+                       
+                         {{$index}} {{protokul.doc.nazwa}}
+                    </li>
+                    </ul>
+                    
+                </div>
+             
+            </div>
+          
+        </div>
+    </div>
+
 </div>
 

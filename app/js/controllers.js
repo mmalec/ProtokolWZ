@@ -12,7 +12,6 @@ angular.module('myApp.controllers', []).
                 //  alert("dziala klick")
                 // $scope.name = name;
                 var defer = $q.defer();
-
                 alert("timeout")
                 //  defer.resolve(function() {
                 alert("resolve")
@@ -30,7 +29,6 @@ angular.module('myApp.controllers', []).
                 })
                 alert("promise " + defer.promise)
                 var protokul = $rootScope.protokul;
-
                 //$scope.i = defer.promise
                 //   });
 
@@ -51,15 +49,45 @@ angular.module('myApp.controllers', []).
         .controller('MyCtrl2', [function() {
 
             }])
-        .controller('ProtokolyCtrl', function() {
+        .controller('ProtokolyCtrl', function($scope, $timeout, $db) {
 
-        })
-        .controller('ProtokulNowyCtrl', function($rootScope, $scope) {
-            
-            $scope.$watch('tytulProtokolu', function(){
-                 $scope.dlugosc = $scope.tytulProtokolu.length
-                 
-            })
-           
+           $db.allDocs({include_docs: true}, function(err, response) { 
+           console.log(err)
+           console.log(response)
+               var _protokoly = angular.fromJson(response.rows);
+              console.log(_protokoly)
+               
+               $scope.protokoly = _protokoly;
+                console.log($scope.protokoly)
+               $scope.$apply();
+           })
+            }
+
+
+
+
+          
+
+      
+        )
+        .controller('ProtokulNowyCtrl', function($scope, $db, $log, $location) {
+
+            $scope.uuid = UUID.generate();
+
+            $scope.zapisz = function() {
+                $log.info('Zapis protokołu')
+                $scope.protokul._id = $scope.uuid
+                var record = angular.toJson($scope.protokul);
+                $db.put($scope.protokul, function(errors, response) {
+                    console.log(errors)
+                    if (errors === null) {
+                        alert('bledy')
+                        $location.path('/protokoly')
+                        $scope.$apply()
+                    }
+                })
+
+
+            }
         })
         ;

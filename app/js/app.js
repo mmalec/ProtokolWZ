@@ -21,13 +21,9 @@ var app = angular.module('myApp', [
 
 
 app.run(function($rootScope) {
-    var protokul = {
-        nazwa: "Moja nazwa",
-        objekt: {
-            id: "1"
-        }
-    }
-
+    $rootScope.protokul = protokul;
+    
+/*
     var db = new PouchDB('protocols');
     db.put({
         _id: 'mydoc',
@@ -47,9 +43,27 @@ app.run(function($rootScope) {
     });
     $rootScope.db = db
 
-    $rootScope.protokul = protokul;
-
+    $rootScope.protokul = protokul_1;
+*/
 
 
 })
+
+
+var log={
+    info:function (msg){
+        console.log(msg)
+    }
+}
+
+var objekt = {
+            id: "1",
+            'nazwa':'Nazwa objekty'
+        }
+        
+ var protokul = {
+     '_id':'1',
+        'nazwa': "Co jest grane",
+        'objekt':objekt 
+    }
 

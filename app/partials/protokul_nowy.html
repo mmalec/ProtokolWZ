@@ -6,14 +6,39 @@ and open the template in the editor.
 -->
 <div appheader></div>
 
-<div class="well">
-<div class="alert alert-info">Podaj nazwę (tytuł) protokołu. </div>
-<form name="nowyProtokul" novalidate >
-    <div ng-class="{error: nowyProtokul.tytulProtokolu.$dirty && nowyProtokul.tytulProtokolu.$invalid}">
-    <input class="form-control" type="text" ng-model="tytulProtokolu" ng-minlength=5 required/>
+<div class="container bs-docs-container">
+
+    <div class="row">
+        <div class="col-md-3">
+            <div class="bs-sidebar hidden-print affix" role="complementary">
+                <ul class="nav bs-sidenav">
+                   
+                    <li class="active">
+                        <a  href="#/protokul/nowy" >Nowy protokłu</a>
+                    </li>
+                    <li class="">
+                        <a href="#/protokoly">Lista protokołów</a>
+                    </li>
+                    <li></li>
+                </ul>
+            </div>
+        </div>
+        <div class="col-md-9" role="main">
+            <h1>Nowy protokuł</h1>
+            <div class="panel panel-default">
+              
+                <div class="panel-heading">Podaj nazwę (tytuł) protokołu. UUID {{uuid}} </div>
+                <form name="nowyProtokul" novalidate >
+                    <div ng-class="{error: nowyProtokul.protokul.nazwa.$dirty && nowyProtokul.protokul.nazwa.$invalid}">
+                        <input class="form-control" type="text" ng-model="protokul.nazwa" ng-minlength=5 required/>
+                    </div>
+                    <button class="btn-success" ng-show="nowyProtokul.$valid" ng-click="zapisz()">Zapisz</button>
+                </form>
+             
+            </div>
+          
+        </div>
     </div>
-    <button class="btn-success" ng-show="nowyProtokul.$valid">Zapisz</button>
-</form>
-<div>Dlugosc {{dlugosc}}</div>
+
 </div>
-Nowy protokul
+
