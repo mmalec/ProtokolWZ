@@ -16,7 +16,7 @@ var app = angular.module('myApp', [
                         .when('/view1/', {templateUrl: 'partials/partial1.html', controller: 'MyCtrl1'})
                         .when('/view2/', {templateUrl: 'partials/partial2.html', controller: 'MyCtrl2'})
                         .when('/protokoly/', {templateUrl: 'partials/protokoly.html', controller: 'ProtokolyCtrl'})
-.when('/protokul/nowy/', {templateUrl: 'partials/protokul_nowy.html', controller: 'ProtokulNowyCtrl'})
+.when('/protokul/nowy/', {templateUrl: 'partials/protokol_nowy.html', controller: 'ProtokolNowyCtrl'})
                         .otherwise({redirectTo: '/view1/'});
             }]);
 
@@ -62,10 +62,4 @@ var objekt = {
             'nazwa':'Nazwa objekty'
         }
         
- function protokul()  {
-     
-     this.id='1',
-     this.nazwa = "Co jest grane",
-     this.objekt=objekt 
-         }
 

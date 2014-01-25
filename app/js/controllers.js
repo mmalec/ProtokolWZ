@@ -70,7 +70,7 @@ angular.module('myApp.controllers', []).
 
       
         )
-        .controller('ProtokulNowyCtrl', function($scope, $db, $log, $location) {
+        .controller('ProtokolNowyCtrl', function($scope, $db, $log, $location) {
 
             $scope.uuid = UUID.generate();
 
