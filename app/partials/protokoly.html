@@ -16,7 +16,7 @@ and open the template in the editor.
                     <li class="">
                         <a  href="#/protokul/nowy" >Nowy protokłu</a>
                     </li>
-                    <li class="active">
+                    <li class="active" >
                         <a href="#/protokoly">Lista protokołów</a>
                     </li>
                     <li></li>
@@ -27,14 +27,15 @@ and open the template in the editor.
             <h1>Lista protokołów</h1>
             <div class="panel panel-default">
               
-                <div class="panel-heading">Podaj nazwę (tytuł) protokołu. UUID {{uuid}}
-                    <input class="form-control" type="search" ng-model="q"/></div>
+                <div class="panel-heading">
+                    <input class="form-control" placeholder="szukaj" type="search" ng-model="q"/></div>
                 <div class="panel-body ">
                     
-                    <ul class="">
-                    <li class="animate-repeat" ng-repeat="protokul in protokoly | filter:q track by $index ">
+                    <ul class="list-group">
+                    <li class="thumbnail animate-repeat"  ng-repeat="protokul in protokoly | filter:q track by $index ">
                        
-                         {{$index}} {{protokul.doc.nazwa}}
+                        <a class="bs-about" href="#">{{$index+1}}. {{protokul.doc.nazwa}}</a>
+                        <p class='small'>{{protokul.doc._id}}</p>
                     </li>
                     </ul>
                     

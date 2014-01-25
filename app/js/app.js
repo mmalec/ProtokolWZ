@@ -4,6 +4,7 @@
 // Declare app level module which depends on filters, and services
 var app = angular.module('myApp', [
     'ngRoute',
+    'ngAnimate',
     'myApp.filters',
     'myApp.services',
     'myApp.directives',
@@ -21,7 +22,7 @@ var app = angular.module('myApp', [
 
 
 app.run(function($rootScope) {
-    $rootScope.protokul = protokul;
+    $rootScope.protokul = new protokul();
     
 /*
     var db = new PouchDB('protocols');
@@ -61,9 +62,10 @@ var objekt = {
             'nazwa':'Nazwa objekty'
         }
         
- var protokul = {
-     '_id':'1',
-        'nazwa': "Co jest grane",
-        'objekt':objekt 
-    }
+ function protokul()  {
+     
+     this.id='1',
+     this.nazwa = "Co jest grane",
+     this.objekt=objekt 
+         }
 

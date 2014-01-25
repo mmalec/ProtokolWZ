@@ -8,6 +8,6 @@
 angular.module('myApp.services', []).
   value('version', '0.1')
   .service('$db',function(){
-            alert("dziala db")
+            
             return   new PouchDB('protocols');
 });

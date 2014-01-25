@@ -81,7 +81,7 @@ angular.module('myApp.controllers', []).
                 $db.put($scope.protokul, function(errors, response) {
                     console.log(errors)
                     if (errors === null) {
-                        alert('bledy')
+                        
                         $location.path('/protokoly')
                         $scope.$apply()
                     }
