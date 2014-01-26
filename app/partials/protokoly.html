@@ -14,7 +14,7 @@ and open the template in the editor.
                 <ul class="nav bs-sidenav">
                    
                     <li class="">
-                        <a  href="#/protokul/nowy" >Nowy protokłu</a>
+                        <a  href="#/protokol/nowy" >Nowy protokłu</a>
                     </li>
                     <li class="active" >
                         <a href="#/protokoly">Lista protokołów</a>
@@ -31,10 +31,12 @@ and open the template in the editor.
                     <input class="form-control" placeholder="szukaj" type="search" ng-model="q"/></div>
                 <div class="panel-body ">
                     
+                   Liczba znalezionych protokołów: {{liczba_protokolow}}
+                    
                     <ul class="list-group">
                     <li class="thumbnail animate-repeat"  ng-repeat="protokul in protokoly | filter:q track by $index ">
                        
-                        <a class="bs-about" href="#">{{$index+1}}. {{protokul.doc.nazwa}}</a>
+                        <a class="bs-about" href="#/protokol/edytuj/{{protokul.id}}">{{$index+1}}. {{protokul.doc.tytul}}</a>
                         <p class='small'>{{protokul.doc._id}}</p>
                     </li>
                     </ul>

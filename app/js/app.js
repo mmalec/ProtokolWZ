@@ -5,6 +5,7 @@
 var app = angular.module('myApp', [
     'ngRoute',
     'ngAnimate',
+  
     'myApp.filters',
     'myApp.services',
     'myApp.directives',
@@ -16,56 +17,26 @@ var app = angular.module('myApp', [
                         .when('/view1/', {templateUrl: 'partials/partial1.html', controller: 'MyCtrl1'})
                         .when('/view2/', {templateUrl: 'partials/partial2.html', controller: 'MyCtrl2'})
                         .when('/protokoly/', {templateUrl: 'partials/protokoly.html', controller: 'ProtokolyCtrl'})
-.when('/protokul/nowy/', {templateUrl: 'partials/protokul_nowy.html', controller: 'ProtokulNowyCtrl'})
+                        .when('/protokol/edytuj/:id', {templateUrl: 'partials/protokol_edytuj.html', controller: 'ProtokolEdytujCtrl'})
+                        .when('/protokol/nowy/', {templateUrl: 'partials/protokol_nowy.html', controller: 'ProtokolNowyCtrl'})
                         .otherwise({redirectTo: '/view1/'});
             }]);
 
 
 app.run(function($rootScope) {
-    $rootScope.protokul = new protokul();
-    
-/*
-    var db = new PouchDB('protocols');
-    db.put({
-        _id: 'mydoc',
-        title: 'Heroes'
-    }, function(err, response) {
-    });
+   // $rootScope.protokul = protokul.constructor();
 
-    db.put({
-        _id: 'mydoc',
-        _rev: '1-A6157A5EA545C99B00FF904EEF05FD9F',
-        title: 'Lets Dance',
-    }, function(err, response) {
-    })
-
-    db.info(function(err, info) {
-        console.log(info.db_name);
-    });
-    $rootScope.db = db
-
-    $rootScope.protokul = protokul_1;
-*/
+   
 
 
 })
 
 
-var log={
-    info:function (msg){
+var log = {
+    info: function(msg) {
         console.log(msg)
     }
 }
 
-var objekt = {
-            id: "1",
-            'nazwa':'Nazwa objekty'
-        }
-        
- function protokul()  {
-     
-     this.id='1',
-     this.nazwa = "Co jest grane",
-     this.objekt=objekt 
-         }
+
 

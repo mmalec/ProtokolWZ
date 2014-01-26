@@ -10,11 +10,30 @@ angular.module('myApp.directives', []).
                 };
             }]);
 
-angular.module('myApp.directives', []).
-directive("appheader", function() {
+app.directive("appheader", function() {
     return {
-        
-      
         templateUrl: "tpls/header.html"
     };
 });
+
+app.directive("protokulMenu", function() {
+    return {
+        controller: protokulMenu,
+        templateUrl: "tpls/protokul_menu.html"
+    };
+});
+
+app.directive("protokolMenuPasek", function() {
+    return {
+        controller: (protokulMenu),
+        templateUrl: "tpls/protokol_menu_pasek.html"
+    };
+});
+
+
+function protokulMenu($rootScope, $location, $anchorScroll) {
+
+    
+    
+
+}

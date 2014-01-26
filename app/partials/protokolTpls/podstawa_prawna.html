@@ -1,0 +1,26 @@
+<h1 id="podstawa">Podstawa prawna </h1>
+            <div class="panel panel-default">
+              
+                <div class="panel-heading">UUID {{uuid}} </div>
+                <form name="podstawaPrawna" novalidate >
+                    {{protokul.tytul}} Liczba: {{liczba_art}}
+                    <ul class="list-group">
+                        <li ng-repeat="artykul in protokul.przepisy" class="thumbnail animate-repeat">
+                            <input class="form-inline" type="checkbox" ng-model="artykul.czy_wybrany"/> 
+                            
+                            <label>{{artykul.nazwa}}</label> 
+                        </li>
+                    </ul>
+                </form>
+             
+            </div>
+
+<div class="row">
+                <div class="col-sm-4 ">
+                    <a  href=""  ng-click="klick(poprzedni)"  >{{poprzedni.nazwa}}</a>
+                </div>
+                <div class="col-sm-offset-10 " >
+                    <a  href=""  ng-click="klick(nastepny)"  >{{nastepny.nazwa}}</a>
+                </div>
+
+            </div>

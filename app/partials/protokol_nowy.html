@@ -14,7 +14,7 @@ and open the template in the editor.
                 <ul class="nav bs-sidenav">
                    
                     <li class="active">
-                        <a  href="#/protokul/nowy" >Nowy protokłu</a>
+                        <a  href="#/protokol/nowy" >Nowy protokłu</a>
                     </li>
                     <li class="">
                         <a href="#/protokoly">Lista protokołów</a>
@@ -29,8 +29,8 @@ and open the template in the editor.
               
                 <div class="panel-heading">Podaj nazwę (tytuł) protokołu. UUID {{uuid}} </div>
                 <form name="nowyProtokul" novalidate >
-                    <div ng-class="{error: nowyProtokul.protokul.nazwa.$dirty && nowyProtokul.protokul.nazwa.$invalid}">
-                        <input class="form-control" type="text" placeholder="Nazwa protokołu" ng-model="protokul.nazwa" ng-minlength=5 required/>
+                    <div ng-class="{error: nowyProtokul.protokul.tytul.$dirty && nowyProtokul.protokul.tytul.$invalid}">
+                        <input class="form-control" type="text" placeholder="Nazwa protokołu" ng-model="protokul.tytul" ng-minlength=5 required/>
                     </div>
                     <button class="btn-success" ng-show="nowyProtokul.$valid" ng-click="zapisz()">Zapisz</button>
                 </form>
