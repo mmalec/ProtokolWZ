@@ -19,6 +19,7 @@ var app = angular.module('myApp', [
                         .when('/protokoly/', {templateUrl: 'partials/protokoly.html', controller: 'ProtokolyCtrl'})
                         .when('/protokol/edytuj/:id', {templateUrl: 'partials/protokol_edytuj.html', controller: 'ProtokolEdytujCtrl'})
                         .when('/protokol/nowy/', {templateUrl: 'partials/protokol_nowy.html', controller: 'ProtokolNowyCtrl'})
+                .when('/objekty', {templateUrl: 'szablony/objekty/lista.html', controller: 'ObjektyListaCtrl'})
                         .otherwise({redirectTo: '/view1/'});
             }]);
 

@@ -10,7 +10,9 @@ var protokul = {
     dane: [
         {
             nazwa: 'Informacje podstawowe',
+            komunikat:'Informacje podstawowe',
             aktywny: true,
+            valid:false,
             szablon_edycji: 'partials/protokolTpls/informacje_podstawowe.html'},
         {
             nazwa: 'Podstawa prawna',
@@ -37,6 +39,20 @@ var protokul = {
                 {nazwa: "§2. ust.1 rozporządzenia Ministra Spraw Wewnętrznych i Administracji z dnia 24 października 2005 r. w sprawie czynności kontrolno-rozpoznawczych przeprowadzanych przez Państwową Straż Pożarną (Dz. U. Nr 225, poz. 1934)", wybrany: false, wymagany: true,
                     
                 }
+            ]},
+        {
+            nazwa: 'Rodzaj kontroli',
+            komunikat:'Rodzaj kontroli (wybrać właściwą)',
+            aktywny: false,
+            valid:false,
+            szablon_edycji: 'partials/protokolTpls/rodzaj_kontroli.html',
+            rodzaje_kontroli:[
+                {nazwa:'podstawowa', wybrany:false, wymagany:true},
+                {nazwa:'problemowa', wybrany:false, wymagany:true},
+                {nazwa:'doraźna', wybrany:false, wymagany:true},
+                {nazwa:'sprawdzająca', wybrany:false, wymagany:true},
+                {nazwa:'odbiór', wybrany:false, wymagany:true},
+                
             ]},
         {nazwa: "Kontrolujący",
             aktywny: false,

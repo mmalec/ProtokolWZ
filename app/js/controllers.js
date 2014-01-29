@@ -53,6 +53,8 @@ angular.module('myApp.controllers', []).
         .controller('ProtokolNowyCtrl', ProtokolNowyCtrl)
         .controller('ProtokolEdytujCtrl', ProtokolEdytujCtrl)
         .controller('PodstawaPrawnaCtrl', PodstawaPrawnaCtrl)
+        .controller('RodzajKontroliCtrl', RodzajKontroliCtrl)
+        .controller('ObjektyListaCtrl', ObjektyListaCtrl)
         ;
 
 
@@ -74,7 +76,7 @@ function ProtokolEdytujCtrl($rootScope, $scope, $db, $routeParams, $location, $t
 
     })
 
-$scope.klick = function(odnosnik) {
+    $scope.klick = function(odnosnik) {
         $scope.wybrany = null;
         //$scope.$apply();
         //alert('dziala')
@@ -91,7 +93,7 @@ $scope.klick = function(odnosnik) {
             $scope.nastepny = $rootScope.protokul.dane[$rootScope.protokul.dane.indexOf(odnosnik) + 1]
         }, 0);
     }
-    
+
 
 }
 
@@ -136,52 +138,52 @@ function ProtokolyCtrl($scope, $timeout, $db) {
 ;
 
 
-function PodstawaPrawnaCtrl($scope){
-    
-    $scope.czy_dodac_wlasne=false;
-    var przepis={
-        nazwa:'',
-        wybrany:false,
-        wymagany:false,
-        dodany:true
+function PodstawaPrawnaCtrl($scope) {
+
+    $scope.czy_dodac_wlasne = false;
+    var przepis = {
+        nazwa: '',
+        wybrany: false,
+        wymagany: false,
+        dodany: true
     };
-    
-    
-    
-    $scope.dodajPrzepis=function(){
+
+
+
+    $scope.dodajPrzepis = function() {
         //alert('dziala')
         $scope.wybrany.przepisy.push($scope.przepis);
-        $scope.przepis=przepis.constructor();
-        $scope.czy_dodac_wlasne=false;
-        $scope.edycjaPrzepisu=false;
+        $scope.przepis = przepis.constructor();
+        $scope.czy_dodac_wlasne = false;
+        $scope.edycjaPrzepisu = false;
     }
-    
-    $scope.usunPrzepis=function(przepis){
+
+    $scope.usunPrzepis = function(przepis) {
         var index = $scope.wybrany.przepisy.indexOf(przepis);
         $scope.wybrany.przepisy.splice(index, 1);
     }
-    
-    $scope.blurPrzepis = function(valid){
+
+    $scope.blurPrzepis = function(valid) {
         //alert('blur'+valid)
-        if(valid===false){
-            $scope.przepis.nazwa=startyTytulPrzepisu;
+        if (valid === false) {
+            $scope.przepis.nazwa = startyTytulPrzepisu;
         }
-        $scope.edycjaPrzepisu=false;
+        $scope.edycjaPrzepisu = false;
     }
-    
-     $scope.klickChceDodac=function(){
-         $scope.przepis = przepis.constructor();
-    $scope.przepis.dodany=true;
-     }
-     
-     var startyTytulPrzepisu="";
-     
-     $scope.edytujPrzepis= function (przepis){
-         $scope.edycjaPrzepisu=true;
-         startyTytulPrzepisu=przepis.nazwa;
-         $scope.przepis=przepis;
-     }
-     
+
+    $scope.klickChceDodac = function() {
+        $scope.przepis = przepis.constructor();
+        $scope.przepis.dodany = true;
+    }
+
+    var startyTytulPrzepisu = "";
+
+    $scope.edytujPrzepis = function(przepis) {
+        $scope.edycjaPrzepisu = true;
+        startyTytulPrzepisu = przepis.nazwa;
+        $scope.przepis = przepis;
+    }
+
     $scope.klickArtykul = function(artykul) {
         //alert('dziala')
         console.log(artykul.wybrany)
@@ -190,16 +192,16 @@ function PodstawaPrawnaCtrl($scope){
                 paragraf.wybrany = false;
                 paragraf.wymagany = false;
                 console.log("p wybrany:" + paragraf.wybrany)
-                console.log("p wymagany:" +paragraf.nazwa +""+ paragraf.wybrany)
+                console.log("p wymagany:" + paragraf.nazwa + "" + paragraf.wybrany)
             });
         }
-        
+
         if (artykul.wybrany === true) {
             angular.forEach(artykul.paragrafy, function(paragraf) {
-               // paragraf.wybrany = false;
+                // paragraf.wybrany = false;
                 paragraf.wymagany = true;
                 console.log("p:" + paragraf.wybrany)
-                console.log("p wymagany po zmianie na t:" +paragraf.nazwa +""+ paragraf.wymagany)
+                console.log("p wymagany po zmianie na t:" + paragraf.nazwa + "" + paragraf.wymagany)
             });
         }
 
@@ -208,23 +210,23 @@ function PodstawaPrawnaCtrl($scope){
             console.log("sprawdzam " + artykul.nazwa + "=" + artykul.wymagany)
             if (artykul.wybrany === true) {
                 czy_jest_wybrany_art = true;
-                var czy_jest_wybrany_paragraf=false;
-                angular.forEach(artykul.paragrafy, function(paragraf){
-                    if(paragraf.wybrany===true){
-                        czy_jest_wybrany_paragraf=true;
+                var czy_jest_wybrany_paragraf = false;
+                angular.forEach(artykul.paragrafy, function(paragraf) {
+                    if (paragraf.wybrany === true) {
+                        czy_jest_wybrany_paragraf = true;
                     }
                 })
-                if(czy_jest_wybrany_paragraf===true){
-                    angular.forEach(artykul.paragrafy, function(paragraf){
-                        paragraf.wymagany=false;
+                if (czy_jest_wybrany_paragraf === true) {
+                    angular.forEach(artykul.paragrafy, function(paragraf) {
+                        paragraf.wymagany = false;
                     });
                 }
-                if(czy_jest_wybrany_paragraf===false){
-                    angular.forEach(artykul.paragrafy, function(paragraf){
-                        paragraf.wymagany=true;
+                if (czy_jest_wybrany_paragraf === false) {
+                    angular.forEach(artykul.paragrafy, function(paragraf) {
+                        paragraf.wymagany = true;
                     });
                 }
-                    
+
             }
 
 
@@ -234,7 +236,7 @@ function PodstawaPrawnaCtrl($scope){
         if (czy_jest_wybrany_art === true) {
             console.log("jest wybrany:" + czy_jest_wybrany_art)
             angular.forEach($scope.wybrany.przepisy, function(artykul) {
-                
+
                 artykul.wymagany = false;
                 console.log("sprawdzam po zmianie wymagany" + artykul.nazwa + "=" + artykul.wymagany)
             })
@@ -248,4 +250,88 @@ function PodstawaPrawnaCtrl($scope){
         czy_jest_wybrany_art = false
 
     };
+}
+
+
+function RodzajKontroliCtrl($scope, $rootScope) {
+    //alert('dziala');
+
+    $scope.edycjaRodzajuKontroli = false;
+
+    $scope.klickChceDodac = function(nowyRodzaj) {
+        $scope.rk = {
+            nazwa: '',
+            wybrany: false,
+            wymagany: false,
+            dodany: true
+        }
+    }
+
+    $scope.dodajRodzajKontroli = function() {
+        $scope.wybrany.rodzaje_kontroli.push($scope.rk);
+        $scope.czy_dodac_wlasne = false
+    }
+
+    $scope.edytujRodzajKontroli = function(rk) {
+        $scope.edycjaRodzajuKontroli = true;
+        $scope.staraNazwa = rk.nazwa;
+        $scope.rk = rk;
+    }
+
+    $scope.blurRodzajKontroli = function(valid) {
+
+        if (valid === false) {
+            $scope.rk.nazwa = $scope.staraNazwa;
+            
+        }
+        $scope.edycjaRodzajuKontroli=false
+    }
+
+    $scope.usunRodzajKontroli = function(rk) {
+        var index = $scope.wybrany.rodzaje_kontroli.indexOf(rk)
+        $scope.wybrany.rodzaje_kontroli.splice(index, 1);
+    }
+
+
+    $scope.klickRodzajKontroli = function(rodzajKontroli) {
+
+        var czy_jest_wybrany = false;
+        angular.forEach($scope.wybrany.rodzaje_kontroli, function(rk) {
+            //  console.log('sprawdzany ' + rk.nazwa)
+            if (rk.wybrany === true) {
+                //  console.log("wybrany " + rk.nazwa)
+                czy_jest_wybrany = true;
+                return
+
+            }
+        })
+
+
+        if (czy_jest_wybrany === true) {
+            angular.forEach($scope.wybrany.rodzaje_kontroli, function(rk) {
+
+                if (rk.wybrany === true) {
+                    rk.wymagany = true;
+                }
+                else {
+                    rk.wymagany = false;
+                }
+            })
+
+        }
+        console.log('wybrany ' + czy_jest_wybrany)
+        if (czy_jest_wybrany === false) {
+            angular.forEach($scope.wybrany.rodzaje_kontroli, function(rk) {
+                rk.wymagany = true;
+            })
+
+        }
+
+
+    }
+
+}
+
+function ObjektyListaCtrl($scope, $rootScope){
+    
 }

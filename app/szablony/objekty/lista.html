@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<div appheader></div>
+
+<div class="container bs-docs-container">
+
+    <div class="row">
+        <div class="col-md-3">
+            <div class="bs-sidebar hidden-print affix" role="complementary">
+                <ul class="nav bs-sidenav">
+                   
+                    <li class="">
+                        <a  href="#/protokol/nowy" >Nowy objekt</a>
+                    </li>
+                    <li class="active" >
+                        <a href="#/protokoly">Lista objektów</a>
+                    </li>
+                    <li></li>
+                </ul>
+            </div>
+        </div>
+        <div class="col-md-9" role="main">
+            <h1>Lista objektów</h1>
+            <div class="panel panel-default">
+              
+                <div class="panel-heading">
+                    <input class="form-control" placeholder="szukaj" type="search" ng-model="q"/></div>
+                <div class="panel-body ">
+                    
+                   Liczba znalezionych protokołów: {{liczba_protokolow}}
+                    
+                    <ul class="list-group">
+                    <li class="thumbnail animate-repeat"  ng-repeat="protokol in protokoly | filter:q | orderBy:'+doc.data_utworzenia' track by $index ">
+                       
+                        <a class="bs-about" href="#/protokol/edytuj/{{protokol.id}}">{{$index+1}}. {{protokol.doc.tytul}}</a>
+                        <p class='small'>{{protokol.doc._id}}</p>
+                        <p>Data utworzenia: {{protokol.doc.data_utworzenia}}</p>
+                    </li>
+                    </ul>
+                    
+                </div>
+             
+            </div>
+          
+        </div>
+    </div>
+
+</div>
+

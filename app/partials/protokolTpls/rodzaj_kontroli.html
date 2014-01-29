@@ -1,0 +1,82 @@
+<div ng-controller="RodzajKontroliCtrl">
+
+    <div  class=" alert " ng-class="{'alert-success':rodzaj_kontroli.$valid, 'alert-warning':!rodzaj_kontroli.$valid}">
+
+
+        <form name="rodzaj_kontroli" novalidate   >
+            <div ng-class="{error: rodzaj_kontroli.$dirty && rodzaj_kontroli.$invalid}">
+                <ul>
+                    <li ng-repeat="rodzaj_kontroli in wybrany.rodzaje_kontroli track by $index" class="checkbox" >
+                        <label class="" ng-show="!rodzaj_kontroli.dodany">
+                            <input   type="checkbox" ng-model="rodzaj_kontroli.wybrany" ng-change="klickRodzajKontroli(rodzaj_kontroli)" ng-required="rodzaj_kontroli.wymagany" /> 
+                            {{rodzaj_kontroli.nazwa}}
+                        </label>
+                         <label class="" ng-show="rodzaj_kontroli.dodany">
+                            <input   type="checkbox" ng-model="rodzaj_kontroli.wybrany" ng-change="klickRodzajKontroli(rodzaj_kontroli)" ng-required="rodzaj_kontroli.wymagany" /> 
+                            <div class="dropdown" ng-show="rodzaj_kontroli.dodany">
+                            <a class="dropdown-toggle">
+                                {{rodzaj_kontroli.nazwa}}
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li >
+                                    <a  ng-click="edytujRodzajKontroli(rodzaj_kontroli)">Edytuj</a>
+                                </li>
+                                <li >
+                                    <a ng-click="usunRodzajKontroli(rodzaj_kontroli)">Usuń</a>
+                                </li>
+                            </ul>
+                        </div>
+
+
+                        </label>
+
+                       
+
+
+                        
+
+                    </li>
+                </ul>
+            </div>
+
+        </form>
+
+    </div>
+
+    <div class="panel panel-default" ng-show="!edycjaRodzajuKontroli">
+        <div class="normal">
+            <label> 
+
+                <input type="checkbox" ng-model='czy_dodac_wlasne' ng-change="klickChceDodac()"/>
+                Chcę dodać rodzaj kontroli.
+            </label>
+        </div>
+        <div class="normal">
+
+            <form name="nowy_przepis" novalidate >
+                <div ng-show="czy_dodac_wlasne" class="animate-show">
+                    <input class="form-control"  ng-model="rk.nazwa" type="text" required="" ng-minlength=3 />
+                </div>
+            </form>
+            <button class="btn-success" ng-show="nowy_przepis.$valid && czy_dodac_wlasne" ng-click="dodajRodzajKontroli()" >Dodaj</button>
+        </div>
+
+    </div>
+
+    <div class="panel panel-default" ng-show="edycjaRodzajuKontroli">
+        Edycja
+        <div class="normal">
+
+            <form name="edycja_rodzaju_kontroli" novalidate >
+                <div ng-show="edycjaRodzajuKontroli" class="animate-show">
+                    <input class="form-control" ng-blur="blurRodzajKontroli(edycja_rodzaju_kontroli.$valid)" ng-model="rk.nazwa" type="text" required="" ng-minlength=3 />
+                </div>
+            </form>
+
+        </div>
+
+    </div>
+
+
+
+</div>
