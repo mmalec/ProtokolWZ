@@ -1,7 +1,4 @@
-<h1 id="kontrolujacy">Kontrola </h1>
-            <div class="panel panel-default">
-              
-                <div class="panel-heading">UUID {{uuid}} </div>
+
                 <form name="nowyProtokul" novalidate >
                     <div ng-class="{error: nowyProtokul.protokul.tytul.$dirty && nowyProtokul.protokul.tytul.$invalid}">
                          <input class="form-control" type="text" placeholder="Nazwa protokołu" ng-model="protokul.tytul" ng-minlength=5 required/>
@@ -23,4 +20,4 @@
                      </div><button class="btn-success" ng-show="nowyProtokul.$valid" ng-click="zapisz()">Zapisz</button>
                 </form>
              
-            </div>
+         

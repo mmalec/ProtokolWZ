@@ -4,38 +4,23 @@ To change this license header, choose License Headers in Project Properties.
 To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
-<h1 id="info">Inforamacje podstawowe</h1>
-<div class="panel panel-default">
+<div  class=" alert " ng-class="{'alert-success':nowyProtokul.$valid, 'alert-warning':!nowyProtokul.$valid}">
 
-    <div class="panel-heading">UUID {{uuid}} </div>
     <form name="nowyProtokul" novalidate >
-        <div ng-class="{error: nowyProtokul.protokul.tytul.$dirty && nowyProtokul.protokul.tytul.$invalid}">
+       
             <input class="form-control" type="text" placeholder="Nazwa protokołu" ng-model="protokul.tytul" ng-minlength=5 required/>
-            <br>
-            <div class='row'>
-                <div class="col-sm-6">
-                    <label for="nr_dokumentu" class="text-info">Data wystawienia protokołu</label>
-                    <input name="nr_dokumentu" class="form-control" type="text" placeholder="Nr pisma" ng-model="protokul.nr_dokumentu" required/>
-                </div>
+          
 
-                <div class="col-sm-6">
-                    <label for="data_wystawienia" class="text-info">Data wystawienia protokołu</label>
-                    <input name="data_wystawienia" class="form-control" type="date" placeholder="Data" ng-model="protokul.data_wystawienia" required/>
-                </div>
-            </div>
-            <br>
-            <input class="form-control" type="text" placeholder="Nazwa protokołu" ng-model="protokul.tytul" ng-minlength=5 required/>
-            <br>
-        </div><button class="btn-success" ng-show="nowyProtokul.$valid" ng-click="zapisz()">Zapisz</button>
-    </form>
+            <label  >Nr pisma
+                <input name="nr_dokumentu" class="form-control" type="text" placeholder="Nr pisma" ng-model="protokul.nr_dokumentu" required/>
+            </label>
 
-</div>
-<div class="row">
-    <div class="col-sm-4 ">
-        <a  href=""  ng-click="klick(poprzedni)"  >{{poprzedni.nazwa}}</a>
-    </div>
-    <div class="col-sm-offset-10 " >
-        <a  href=""  ng-click="klick(nastepny)"  >{{nastepny.nazwa}}</a>
-    </div>
 
-</div>
+            <label >Data wystawienia protokołu
+                <input name="data_wystawienia" class="form-control" type="date" placeholder="Data" ng-model="protokul.data_wystawienia" required/>
+            </label>
+
+            
+            </form>
+
+        </div>

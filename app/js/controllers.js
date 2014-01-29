@@ -52,42 +52,11 @@ angular.module('myApp.controllers', []).
         .controller('ProtokolyCtrl', ProtokolyCtrl)
         .controller('ProtokolNowyCtrl', ProtokolNowyCtrl)
         .controller('ProtokolEdytujCtrl', ProtokolEdytujCtrl)
+        .controller('PodstawaPrawnaCtrl', PodstawaPrawnaCtrl)
         ;
 
 
-function ProtokolEdytujCtrl($rootScope, $scope, $db, $routeParams, $location, $anchorScroll) {
-
-
-    $scope.odnosniki = [
-        {'nazwa': 'Informacje podstawowe',
-            wybrany: false, path: 'partials/protokolTpls/informacje_podstawowe.html'},
-        {'nazwa': 'Podstawa prawna',
-            wybrany: false, path: 'partials/protokolTpls/podstawa_prawna.html'},
-        {'nazwa': 'Kontrolujący',
-            wybrany: false, path: 'partials/protokolTpls/kontrolujacy.html'}
-    ]
-
-    $scope.wybrany_odnosnik = $scope.odnosniki[0]
-    $scope.poprzedni = $scope.odnosniki[$scope.odnosniki.indexOf($scope.wybrany_odnosnik) - 1];
-    $scope.nastepny = $scope.odnosniki[$scope.odnosniki.indexOf($scope.wybrany_odnosnik) + 1]
-    $scope.klick = function(odnosnik) {
-        //alert('dziala')
-        angular.forEach($scope.odnosniki, function(odnosnik) {
-            odnosnik.wybrany = false;
-        })
-
-        odnosnik.wybrany = true
-
-        // if(odnosnik.archor === true){
-        //     $location.hash(odnosnik.cel);
-        //$anchorScroll();
-        // }
-        // $scope.$apply();
-        $scope.wybrany_odnosnik = odnosnik
-        $scope.poprzedni = $scope.odnosniki[$scope.odnosniki.indexOf(odnosnik) - 1];
-        $scope.nastepny = $scope.odnosniki[$scope.odnosniki.indexOf(odnosnik) + 1]
-    }
-
+function ProtokolEdytujCtrl($rootScope, $scope, $db, $routeParams, $location, $timeout) {
 
 
     $scope.komunikat = 'Ładowanie protokołu...'
@@ -95,11 +64,38 @@ function ProtokolEdytujCtrl($rootScope, $scope, $db, $routeParams, $location, $a
     $scope.adres = $location.absUrl();
     $db.get($routeParams.id, function(errors, doc) {
         $rootScope.protokul = angular.fromJson(doc)
-        $scope.liczba_art=$rootScope.protokul.przepisy.length
+        // $scope.liczba_art = $rootScope.protokul.przepisy.length;
+        $scope.odnosniki = $rootScope.protokul.dane;
+        console.log($scope.odnosniki)
+        $scope.wybrany = $scope.odnosniki[0]
+        $scope.poprzedni = $scope.odnosniki[$scope.odnosniki.indexOf($scope.wybrany_odnosnik) - 1];
+        $scope.nastepny = $scope.odnosniki[$scope.odnosniki.indexOf($scope.wybrany_odnosnik) + 1]
         $scope.$apply();
+
     })
 
+$scope.klick = function(odnosnik) {
+        $scope.wybrany = null;
+        //$scope.$apply();
+        //alert('dziala')
+        $timeout(function() {
+
+
+            angular.forEach($rootScope.protokul.dane, function(odnosnik) {
+                odnosnik.aktywny = false;
+                console.log('zmianiam na flase');
+            });
+            odnosnik.aktywny = true;
+            $scope.wybrany = odnosnik;
+            $scope.poprzedni = $rootScope.protokul.dane[$rootScope.protokul.dane.indexOf(odnosnik) - 1];
+            $scope.nastepny = $rootScope.protokul.dane[$rootScope.protokul.dane.indexOf(odnosnik) + 1]
+        }, 0);
+    }
+    
+
 }
+
+
 
 function  ProtokolNowyCtrl($scope, $db, $log, $location) {
     $scope.protokul = protokul;
@@ -107,6 +103,7 @@ function  ProtokolNowyCtrl($scope, $db, $log, $location) {
     $scope.zapisz = function() {
         $log.info('Zapis protokołu')
         $scope.protokul._id = $scope.uuid
+        $scope.protokul.data_utworzenia = new Date().toLocaleString();
         var record = angular.toJson($scope.protokul);
         $db.put($scope.protokul, function(errors, response) {
             console.log(errors)
@@ -134,6 +131,121 @@ function ProtokolyCtrl($scope, $timeout, $db) {
         $scope.protokoly = _protokoly;
         console.log($scope.protokoly)
         $scope.$apply();
-    })
+    });
 }
 ;
+
+
+function PodstawaPrawnaCtrl($scope){
+    
+    $scope.czy_dodac_wlasne=false;
+    var przepis={
+        nazwa:'',
+        wybrany:false,
+        wymagany:false,
+        dodany:true
+    };
+    
+    
+    
+    $scope.dodajPrzepis=function(){
+        //alert('dziala')
+        $scope.wybrany.przepisy.push($scope.przepis);
+        $scope.przepis=przepis.constructor();
+        $scope.czy_dodac_wlasne=false;
+        $scope.edycjaPrzepisu=false;
+    }
+    
+    $scope.usunPrzepis=function(przepis){
+        var index = $scope.wybrany.przepisy.indexOf(przepis);
+        $scope.wybrany.przepisy.splice(index, 1);
+    }
+    
+    $scope.blurPrzepis = function(valid){
+        //alert('blur'+valid)
+        if(valid===false){
+            $scope.przepis.nazwa=startyTytulPrzepisu;
+        }
+        $scope.edycjaPrzepisu=false;
+    }
+    
+     $scope.klickChceDodac=function(){
+         $scope.przepis = przepis.constructor();
+    $scope.przepis.dodany=true;
+     }
+     
+     var startyTytulPrzepisu="";
+     
+     $scope.edytujPrzepis= function (przepis){
+         $scope.edycjaPrzepisu=true;
+         startyTytulPrzepisu=przepis.nazwa;
+         $scope.przepis=przepis;
+     }
+     
+    $scope.klickArtykul = function(artykul) {
+        //alert('dziala')
+        console.log(artykul.wybrany)
+        if (artykul.wybrany === false) {
+            angular.forEach(artykul.paragrafy, function(paragraf) {
+                paragraf.wybrany = false;
+                paragraf.wymagany = false;
+                console.log("p wybrany:" + paragraf.wybrany)
+                console.log("p wymagany:" +paragraf.nazwa +""+ paragraf.wybrany)
+            });
+        }
+        
+        if (artykul.wybrany === true) {
+            angular.forEach(artykul.paragrafy, function(paragraf) {
+               // paragraf.wybrany = false;
+                paragraf.wymagany = true;
+                console.log("p:" + paragraf.wybrany)
+                console.log("p wymagany po zmianie na t:" +paragraf.nazwa +""+ paragraf.wymagany)
+            });
+        }
+
+        angular.forEach($scope.wybrany.przepisy, function(artykul) {
+            console.log(artykul.nazwa + artykul.wymagany)
+            console.log("sprawdzam " + artykul.nazwa + "=" + artykul.wymagany)
+            if (artykul.wybrany === true) {
+                czy_jest_wybrany_art = true;
+                var czy_jest_wybrany_paragraf=false;
+                angular.forEach(artykul.paragrafy, function(paragraf){
+                    if(paragraf.wybrany===true){
+                        czy_jest_wybrany_paragraf=true;
+                    }
+                })
+                if(czy_jest_wybrany_paragraf===true){
+                    angular.forEach(artykul.paragrafy, function(paragraf){
+                        paragraf.wymagany=false;
+                    });
+                }
+                if(czy_jest_wybrany_paragraf===false){
+                    angular.forEach(artykul.paragrafy, function(paragraf){
+                        paragraf.wymagany=true;
+                    });
+                }
+                    
+            }
+
+
+
+        });
+
+        if (czy_jest_wybrany_art === true) {
+            console.log("jest wybrany:" + czy_jest_wybrany_art)
+            angular.forEach($scope.wybrany.przepisy, function(artykul) {
+                
+                artykul.wymagany = false;
+                console.log("sprawdzam po zmianie wymagany" + artykul.nazwa + "=" + artykul.wymagany)
+            })
+        }
+        if (czy_jest_wybrany_art === false) {
+            console.log("jest wybranyII:" + czy_jest_wybrany_art)
+            angular.forEach($scope.wybrany.przepisy, function(artykul) {
+                artykul.wymagany = true;
+            });
+        }
+        czy_jest_wybrany_art = false
+
+    };
+}

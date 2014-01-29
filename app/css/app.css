@@ -7,6 +7,13 @@
     top: 0px;
 }
 
+.normal{
+      font-weight: normal;
+}
+
+.normal label{
+    font-weight: normal;
+}
 
 input.ng-invalid {
   border: 1px solid red;

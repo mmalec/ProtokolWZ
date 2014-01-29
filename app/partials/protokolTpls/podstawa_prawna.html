@@ -1,26 +1,95 @@
-<h1 id="podstawa">Podstawa prawna </h1>
-            <div class="panel panel-default">
-              
-                <div class="panel-heading">UUID {{uuid}} </div>
-                <form name="podstawaPrawna" novalidate >
-                    {{protokul.tytul}} Liczba: {{liczba_art}}
-                    <ul class="list-group">
-                        <li ng-repeat="artykul in protokul.przepisy" class="thumbnail animate-repeat">
-                            <input class="form-inline" type="checkbox" ng-model="artykul.czy_wybrany"/> 
-                            
-                            <label>{{artykul.nazwa}}</label> 
-                        </li>
-                    </ul>
-                </form>
-             
+<div ng-controller="PodstawaPrawnaCtrl">
+
+    <div  class=" alert " ng-class="{'alert-success':podstawa_prawna.$valid, 'alert-warning':!podstawa_prawna.$valid}">
+
+
+        <form name="podstawa_prawna" novalidate   >
+            <div ng-class="{error: podstawa_prawna.$dirty && podstawa_prawna.$invalid}">
+                <ul>
+                    <li ng-repeat="artykul in wybrany.przepisy" class="checkbox" >
+                        <label class="" ng-show="!artykul.dodany">
+                            <input   type="checkbox" ng-model="artykul.wybrany" ng-change="klickArtykul(artykul)" ng-required="artykul.wymagany" /> 
+                            {{artykul.nazwa}}
+                        </label>
+                         <label class="" ng-show="artykul.dodany">
+                            <input   type="checkbox" ng-model="artykul.wybrany" ng-change="klickArtykul(artykul)" ng-required="artykul.wymagany" /> 
+                            <div class="dropdown" ng-show="artykul.dodany">
+                            <a class="dropdown-toggle">
+                                {{artykul.nazwa}}
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li >
+                                    <a  ng-click="edytujPrzepis(artykul)">Edytuj</a>
+                                </li>
+                                <li >
+                                    <a ng-click="usunPrzepis(artykul)">Usuń</a>
+                                </li>
+                            </ul>
+                        </div>
+
+
+                        </label>
+
+                        <div ng-show="artykul.wybrany">
+                            <ul>
+                                <li ng-repeat="paragraf in artykul.paragrafy" class="checkbox">
+                                    <label class="" >
+                                        <input  type="checkbox" ng-model="paragraf.wybrany" ng-change="klickArtykul(artykul)" ng-required="paragraf.wymagany"/> 
+                                        {{paragraf.nazwa}}
+                                    </label>
+                                    <label class="">
+                                        <input  type="checkbox" ng-model="paragraf.wybrany" ng-change="klickArtykul(artykul)" ng-required="paragraf.wymagany"/> 
+                                        {{paragraf.nazwa}}
+                                    </label>
+                                </li>
+                            </ul>
+                        </div>
+
+
+                        
+
+                    </li>
+                </ul>
             </div>
 
-<div class="row">
-                <div class="col-sm-4 ">
-                    <a  href=""  ng-click="klick(poprzedni)"  >{{poprzedni.nazwa}}</a>
-                </div>
-                <div class="col-sm-offset-10 " >
-                    <a  href=""  ng-click="klick(nastepny)"  >{{nastepny.nazwa}}</a>
-                </div>
+        </form>
 
-            </div>
+    </div>
+
+    <div class="panel panel-default" ng-show="!edycjaPrzepisu">
+        <div class="normal">
+            <label> 
+
+                <input type="checkbox" ng-model='czy_dodac_wlasne' ng-change="klickChceDodac()"/>
+                Chcę dodać podstawę prawną.
+            </label>
+        </div>
+        <div class="normal">
+
+            <form name="nowy_przepis" novalidate >
+                <div ng-show="czy_dodac_wlasne" class="animate-show">
+                    <input class="form-control"  ng-model="przepis.nazwa" type="text" required="" ng-minlength=3 />
+                </div>
+            </form>
+            <button class="btn-success" ng-show="nowy_przepis.$valid && czy_dodac_wlasne" ng-click="dodajPrzepis()" >Dodaj</button>
+        </div>
+
+    </div>
+
+    <div class="panel panel-default" ng-show="edycjaPrzepisu">
+        Edycja
+        <div class="normal">
+
+            <form name="edycja_przepisu" novalidate >
+                <div ng-show="edycjaPrzepisu" class="animate-show">
+                    <input class="form-control" ng-blur="blurPrzepis(edycja_przepisu.$valid)" ng-model="przepis.nazwa" type="text" required="" ng-minlength=3 />
+                </div>
+            </form>
+
+        </div>
+
+    </div>
+
+
+
+</div>

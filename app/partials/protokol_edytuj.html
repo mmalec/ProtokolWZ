@@ -6,9 +6,7 @@ and open the template in the editor.
 -->
 
 <div appheader></div>
-{{uuid}}
-{{komunikat}}
-<div>Location: {{adres}}</div>
+
 <div class="container bs-docs-container">
 
     <div class="row " >
@@ -16,7 +14,7 @@ and open the template in the editor.
             <div class="bs-sidebar hidden-print affix" role="complementary" >
                 <ul class="nav bs-sidenav">
 
-                    <li  ng-repeat="odnosnik in odnosniki" ng-class="{active:odnosnik.wybrany}">
+                    <li  ng-repeat="odnosnik in protokul.dane" ng-class="{active:odnosnik.aktywny}">
                         <a    ng-click="klick(odnosnik)"  >{{odnosnik.nazwa}}</a>
                     </li>
 
@@ -24,16 +22,32 @@ and open the template in the editor.
             </div >
         </div>
         <div class="col-md-9 " role="main"  >
+            <h1 id="info">{{wybrany.nazwa}}</h1>
+            <div class="panel panel-default">
+
+                <div class="panel-heading ">
+                    {{wybrany.komunikat}} <span class="badge">UUID:{{protokul._id}}</span>
+                </div>
 
 
 
 
 
+                <div ng-include="wybrany.szablon_edycji" class="animate-repeat panel-body">
+                    
+                </div>
 
-            <div ng-include="wybrany_odnosnik.path" class="slide-animate"></div>
+            </div>
+            <ul class="pager">
+                <li class="previous" ng-class="{'hidden':(poprzedni===nul)}">
+                    <a  href=""  ng-click="klick(poprzedni)"  >{{poprzedni.nazwa}}</a>
+                </li>
+                <li class=" next " ng-class="{'hidden':(nastepny===nul)}" >
+                    <a  href=""  ng-click="klick(nastepny)"  >{{nastepny.nazwa}}</a>
+                </li>
 
+            </ul>
 
-            
         </div>
 
     </div>
