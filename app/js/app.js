@@ -5,7 +5,6 @@
 var app = angular.module('myApp', [
     'ngRoute',
     'ngAnimate',
-  
     'myApp.filters',
     'myApp.services',
     'myApp.directives',
@@ -19,15 +18,18 @@ var app = angular.module('myApp', [
                         .when('/protokoly/', {templateUrl: 'partials/protokoly.html', controller: 'ProtokolyCtrl'})
                         .when('/protokol/edytuj/:id', {templateUrl: 'partials/protokol_edytuj.html', controller: 'ProtokolEdytujCtrl'})
                         .when('/protokol/nowy/', {templateUrl: 'partials/protokol_nowy.html', controller: 'ProtokolNowyCtrl'})
-                .when('/objekty', {templateUrl: 'szablony/objekty/lista.html', controller: 'ObjektyListaCtrl'})
+                        .when('/objekty', {templateUrl: 'szablony/objekty/lista.html', controller: 'ObjektyListaCtrl'})
+                .when('/kontrolujacy/nowy', {templateUrl: 'szablony/kontrolujacy/nowy.html', controller: 'KontrolujacyNowyCtrl'})
+        .when('/kontrolujacy/edycja/:id', {templateUrl: 'szablony/kontrolujacy/edycja.html', controller: 'KontrolujacyEdycjaCtrl'})
+                   .when('/kontrolujacy/lista', {templateUrl: 'szablony/kontrolujacy/lista.html', controller: 'KontrolujacyListaCtrl'})
                         .otherwise({redirectTo: '/view1/'});
             }]);
 
 
 app.run(function($rootScope) {
-   // $rootScope.protokul = protokul.constructor();
+    // $rootScope.protokul = protokul.constructor();
 
-   
+
 
 
 })

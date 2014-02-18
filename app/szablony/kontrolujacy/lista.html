@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<div appheader></div>
+
+<div class="container bs-docs-container">
+
+    <div class="row">
+        <div class="col-md-3">
+            <div class="bs-sidebar hidden-print affix" role="complementary">
+                <ul class="nav bs-sidenav">
+
+                    <li class="">
+                        <a  href="#/kontrolujacy/nowy" >Nowy kontrolujący</a>
+                    </li>
+                    <li class="active" >
+                        <a href="#/kontrolujacy/lista">Lista kontrolujących</a>
+                    </li>
+                    <li></li>
+                </ul>
+            </div>
+        </div>
+        <div class="col-md-9" role="main">
+            <h1>Lista kontrolujących</h1>
+            <div class="panel panel-default">
+
+                <div class="panel-heading">
+                    <input class="form-control" placeholder="szukaj" type="search" ng-model="q"/></div>
+                <div class="panel-body ">
+
+                    Liczba znalezionych  {{liczba_znalezionych}}
+
+                    <ul class="list-group">
+                        <li class="thumbnail animate-repeat"  ng-repeat="kontrolujacy in lista| filter:q | orderBy:'-key.data_utworzenia' track by $index ">
+
+
+                            {{$index + 1}}. <a class="bs-about" href="#/kontrolujacy/edycja/{{kontrolujacy.key._id}}"> {{kontrolujacy.key.stopien}} {{kontrolujacy.key.imiona}} {{kontrolujacy.key.nazwisko}}</a>
+                            <div class="btn-group right pull-right">
+
+                                <div class=" btn-danger btn-sm " ng-click="usun(kontrolujacy.key)">Usuń</div>
+                            </div>
+                           
+                            <div>{{kontrolujacy.key.stanowisko}} {{kontrolujacy.key.nazwa_jednostki_organizacyjnej}}</div>
+                            <div>
+                                <span class="small">nr upoważnienia: </span> {{kontrolujacy.key.upowaznienie_nr}}
+                            </div>
+                            <div>
+                                <span class="small">wydane przez: </span>{{kontrolujacy.key.upowaznienie_wydanie_przez}}
+                            </div>
+                            <div>
+                                <span class="small">data wydania: </span>{{kontrolujacy.key.upowaznienie_data}}
+                            </div>
+                            <p>
+                                <em class="small">Data utworzenia: {{kontrolujacy.key.data_utworzenia}}</em>
+                                <em class="small">{{kontrolujacy.key.type}}</em>
+                                <em class='small'>{{kontrolujacy.key._id}}</em>
+                            </p>
+
+                        </li>
+                    </ul>
+
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+</div>
+

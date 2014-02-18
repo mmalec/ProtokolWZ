@@ -34,7 +34,7 @@ and open the template in the editor.
                    Liczba znalezionych protokołów: {{liczba_protokolow}}
                     
                     <ul class="list-group">
-                    <li class="thumbnail animate-repeat"  ng-repeat="protokol in protokoly | filter:q | orderBy:'+doc.data_utworzenia' track by $index ">
+                    <li class="thumbnail animate-repeat"  ng-repeat="protokol in protokoly  | filter:q | orderBy:'+doc.data_utworzenia' track by $index ">
                        
                         <a class="bs-about" href="#/protokol/edytuj/{{protokol.id}}">{{$index+1}}. {{protokol.doc.tytul}}</a>
                         <p class='small'>{{protokol.doc._id}}</p>

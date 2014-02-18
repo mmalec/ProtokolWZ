@@ -1,0 +1,74 @@
+
+
+<form name="kontrolujacyForm" novalidate >
+    <div  class=" alert " ng-class="{'alert-success':kontrolujacyForm.$valid, 'alert-warning':!kontrolujacyForm.$valid}">
+        <br>
+        <div class="row">
+
+            <div class="col-xs-6" ng-class=" {error: kontrolujacyForm.kontrolujacy.stopien.$dirty && kontrolujacyForm.kontrolujacy.imiona.$invalid}">
+                <label>stopień</label>
+                <input class="form-control" type="text" placeholder="stopień" ng-model="kontrolujacy.stopien" ng-minlength=3 list="stopnie" required/>
+                <datalist id="stopnie" >
+
+                    <option class="normal" ng-repeat="stopien in stopnie" value="{{stopien}}"></option>
+                </datalist>
+            </div>
+
+            <div class="col-xs-6"  ng-class="{error: kontrolujacyForm.kontrolujacy.stanowisko.$dirty && kontrolujacyForm.kontrolujacy.stanowisko.$invalid}">
+                <label>stanowisko</label>
+                <input class="form-control" type="text" placeholder="stanowisko" ng-model="kontrolujacy.stanowisko" ng-minlength=5 required/>
+            </div>
+
+
+
+        </div>
+        <br>
+        <div class="row" >
+
+            <div class="col-xs-6"  ng-class="{error: kontrolujacyForm.kontrolujacy.imiona.$dirty && kontrolujacyForm.kontrolujacy.imiona.$invalid}">
+                <label>imiona</label>
+                <input class="form-control" type="text" placeholder="imiona" ng-model="kontrolujacy.imiona" ng-minlength=3 required/>
+            </div>
+            <div class="col-md-6"  ng-class="{error: kontrolujacyForm.kontrolujacy.nazwisko.$dirty && kontrolujacyForm.kontrolujacy.nazwisko.$invalid}">
+                <label>nazwisko</label>
+                <input class="form-control" type="text" placeholder="nazwisko" ng-model="kontrolujacy.nazwisko" ng-minlength=5 required/>
+            </div>
+
+
+        </div>
+        <br>
+
+        <div class="row">
+            <div class="col-xs-6"  ng-class="{error: kontrolujacyForm.kontrolujacy.nazwa_jednostki_organizacyjnej.$dirty && kontrolujacyForm.kontrolujacy.nazwa_jednostki_organizacyjnej.$invalid}">
+                <label>nazwa jednostki organizacyjnej</label>
+                <input class="form-control" type="text" placeholder="jednosta organizacyjna" ng-model="kontrolujacy.nazwa_jednostki_organizacyjnej" ng-minlength=5 required/>
+            </div>
+            <div class="col-xs-6"  ng-class="{error: kontrolujacyForm.kontrolujacy.upowaznienie_nr.$dirty && kontrolujacyForm.kontrolujacy.upowaznienie_nr.$invalid}">
+                <label>nr upoważnienia</label>
+                <input class="form-control" type="text" placeholder="nr upoważnienia" ng-model="kontrolujacy.upowaznienie_nr" ng-minlength=3 required/>
+            </div>
+        </div>
+        <br>
+        <div class="row">
+
+            <div class="col-xs-6"  ng-class="{error: kontrolujacyForm.kontrolujacy.upowaznienie_data.$dirty && kontrolujacyForm.kontrolujacy.upowaznienie_data.$invalid}">
+                <label>data wydania upoważnienia</label>
+                <input class="form-control" type="date" placeholder="data wydania upoważnienia" ng-model="kontrolujacy.upowaznienie_data" ng-minlength=3 required/>
+            </div>
+
+            <div class="col-xs-6"  ng-class="{error: kontrolujacyForm.kontrolujacy.upowaznienie_wydanie_przez.$dirty && kontrolujacyForm.kontrolujacy.upowaznienie_wydanie_przez.$invalid}">
+                <label>wydający upoważnienie</label>
+                <input class="form-control" type="text" placeholder="wydający upoważnienie" ng-model="kontrolujacy.upowaznienie_wydanie_przez" ng-minlength=3 required/>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+</form>
+
+<p class="hidden">{{kontrolujacy.valid = kontrolujacyForm.$valid}}</p>
+

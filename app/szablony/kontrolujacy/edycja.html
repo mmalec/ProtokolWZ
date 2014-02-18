@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<div appheader></div>
+
+<div class="container bs-docs-container">
+
+    <div class="row">
+        <div class="col-md-3">
+            <div class="bs-sidebar hidden-print affix" role="complementary">
+                <ul class="nav bs-sidenav">
+
+                    <li class="active">
+                        <a  href="#/kontrolujacy/nowy" >Nowy kontrolujący</a>
+                    </li>
+                    <li class="">
+                        <a href="#/kontrolujacy/lista">Lista kontrolujących</a>
+                    </li>
+                    <li></li>
+                </ul>
+            </div>
+        </div>
+        <div class="col-md-9" role="main">
+            <h1>Edycja kontrolującego</h1>
+            <div class="panel panel-default">
+
+                <div class="panel-heading">Podaj dane kontrojującego. UUID {{uuid}} </div>
+                <div ng-include src="'szablony/kontrolujacy/form.html'" class="slide-animate panel-body"> </div>
+                <div class="panel-body">
+                    <button class="btn" ng-show="!kontrolujacy.valid" disabled>Zapisz</button>
+                    <button class="btn-success btn" ng-show="kontrolujacy.valid" ng-click="zapisz()">Zapisz</button>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+

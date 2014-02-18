@@ -55,8 +55,96 @@ angular.module('myApp.controllers', []).
         .controller('PodstawaPrawnaCtrl', PodstawaPrawnaCtrl)
         .controller('RodzajKontroliCtrl', RodzajKontroliCtrl)
         .controller('ObjektyListaCtrl', ObjektyListaCtrl)
+        .controller('KontrolujacyListaCtrl', KontrolujacyListaCtrl)
+        .controller('KontrolujacyNowyCtrl', KontrolujacyNowyCtrl)
         ;
 
+
+function KontrolujacyEdycjaCtrl($scope, $db) {
+
+}
+
+function KontrolujacyNowyCtrl($scope, $db, $location) {
+
+
+    var _kontrolujacy = angular.fromJson(angular.toJson(kontrolujacy))
+    $scope.kontrolujacy = _kontrolujacy;
+    $scope.uuid = UUID.generate();
+    $scope.stopnie = stopnie;
+    
+    $scope.zmiana=function (){
+        alert("zmiana");
+    }
+
+   
+    $scope.zapisz = function() {
+
+        $scope.kontrolujacy._id = $scope.uuid;
+        //  $scope.kontrolujacy._key='kontrolujacy';
+        $scope.kontrolujacy.data_utworzenia = new Date().toLocaleString();
+        $scope.kontrolujacy.data_modyfikacji = new Date().toLocaleString();
+        $scope.kontrolujacy.key = "kontrolujacy"
+        //  $scope.kontrolujacy.imiona="moje imiona"
+        // var record = angular.toJson($scope.protokul);
+        $db.put($scope.kontrolujacy, function(errors, response) {
+            console.log(errors)
+            if (errors === null) {
+
+                $location.path('/kontrolujacy/lista')
+                $scope.$apply()
+            }
+        })
+
+
+    }
+
+}
+
+function KontrolujacyListaCtrl($scope, $db) {
+    function map(doc) {
+        if (doc.type == 'kontrolujacy') {
+            emit(doc, null);
+        }
+    }
+    $db.query({map: map}, function(err, response) {
+
+        console.log(err)
+        // console.log(response)
+        var _kontrolujacy = angular.fromJson(response.rows);
+        $scope.znalezionych = _kontrolujacy.length
+        console.log(_kontrolujacy)
+
+        $scope.lista = _kontrolujacy;
+        // console.log($scope.lista)
+        $scope.$apply();
+    });
+
+    $scope.usun = function(kontrolujacy) {
+        $db.info(function(err, info) {
+        })
+        $db.remove(kontrolujacy, function(err, response) {
+            console.log(err)
+            if (err == null) {
+                $db.query({map: map}, function(err, response) {
+
+                    console.log(err)
+                    // console.log(response)
+                    var _kontrolujacy = angular.fromJson(response.rows);
+                    $scope.znalezionych = _kontrolujacy.length
+                    console.log(_kontrolujacy)
+
+                    $scope.lista = _kontrolujacy;
+                    // console.log($scope.lista)
+                    $scope.$apply();
+                });
+                $scope.$apply();
+
+            }
+        })
+
+    }
+
+}
 
 function ProtokolEdytujCtrl($rootScope, $scope, $db, $routeParams, $location, $timeout) {
 
@@ -282,9 +370,9 @@ function RodzajKontroliCtrl($scope, $rootScope) {
 
         if (valid === false) {
             $scope.rk.nazwa = $scope.staraNazwa;
-            
+
         }
-        $scope.edycjaRodzajuKontroli=false
+        $scope.edycjaRodzajuKontroli = false
     }
 
     $scope.usunRodzajKontroli = function(rk) {
@@ -332,6 +420,6 @@ function RodzajKontroliCtrl($scope, $rootScope) {
 
 }
 
-function ObjektyListaCtrl($scope, $rootScope){
-    
+function ObjektyListaCtrl($scope, $rootScope) {
+
 }
