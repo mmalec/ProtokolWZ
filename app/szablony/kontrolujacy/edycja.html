@@ -28,8 +28,9 @@ and open the template in the editor.
             <div class="panel panel-default">
 
                 <div class="panel-heading">Podaj dane kontrojującego. UUID {{uuid}} </div>
-                <div ng-include src="'szablony/kontrolujacy/form.html'" class="slide-animate panel-body"> </div>
+                <div ng-show="zaladowany" ng-include src="'szablony/kontrolujacy/form.html'" class="animate-repeat panel-body"> </div>
                 <div class="panel-body">
+                    
                     <button class="btn" ng-show="!kontrolujacy.valid" disabled>Zapisz</button>
                     <button class="btn-success btn" ng-show="kontrolujacy.valid" ng-click="zapisz()">Zapisz</button>
                 </div>

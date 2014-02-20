@@ -60,8 +60,46 @@ angular.module('myApp.controllers', []).
         ;
 
 
-function KontrolujacyEdycjaCtrl($scope, $db) {
+function KontrolujacyEdycjaCtrl($scope, $db, $routeParams, $location, $timeout, $rootScope) {
 
+$scope.zaladowany=false
+    $db.get($routeParams.id, function(err, doc) {
+        console.log(doc)
+        if (err == null) {
+           
+            
+                //alert("dziala")
+                var _kontrolujacy = angular.fromJson(doc)
+                var stan = _kontrolujacy.valid;
+                _kontrolujacy.valid=stan;
+                 $rootScope.kontrolujacy = _kontrolujacy
+                 $scope.zaladowany=true
+              $scope.$apply()
+            }
+
+
+        }
+    )
+
+
+
+    $scope.zapisz = function() {
+
+        $scope.kontrolujacy.data_modyfikacji = new Date().toLocaleString();
+        // $scope.kontrolujacy.key = "kontrolujacy"
+        //  $scope.kontrolujacy.imiona="moje imiona"
+        // var record = angular.toJson($scope.protokul);
+        $db.put($scope.kontrolujacy, function(errors, response) {
+            console.log(errors)
+            if (errors === null) {
+
+                $location.path('/kontrolujacy/lista')
+                $scope.$apply()
+            }
+        })
+
+
+    }
 }
 
 function KontrolujacyNowyCtrl($scope, $db, $location) {
@@ -71,12 +109,14 @@ function KontrolujacyNowyCtrl($scope, $db, $location) {
     $scope.kontrolujacy = _kontrolujacy;
     $scope.uuid = UUID.generate();
     $scope.stopnie = stopnie;
-    
-    $scope.zmiana=function (){
+
+    $scope.zmiana = function() {
         alert("zmiana");
     }
 
-   
+
+
+
     $scope.zapisz = function() {
 
         $scope.kontrolujacy._id = $scope.uuid;
