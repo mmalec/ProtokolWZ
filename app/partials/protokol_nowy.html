@@ -29,8 +29,8 @@ and open the template in the editor.
               
                 <div class="panel-heading">Podaj nazwę (tytuł) protokołu. UUID {{uuid}} </div>
                 <form name="nowyProtokul" novalidate >
-                    <div ng-class="{error: nowyProtokul.protokul.tytul.$dirty && nowyProtokul.protokul.tytul.$invalid}">
-                        <input class="form-control" type="text" placeholder="Nazwa protokołu" ng-model="protokul.tytul" ng-minlength=5 required/>
+                    <div ng-class="{error: nowyProtokul.protokol.tytul.$dirty && nowyProtokul.protokol.tytul.$invalid}">
+                        <input class="form-control" type="text" placeholder="Nazwa protokołu" ng-model="protokol.tytul" ng-minlength=5 required/>
                     </div>
                     <button class="btn-success" ng-show="nowyProtokul.$valid" ng-click="zapisz()">Zapisz</button>
                 </form>

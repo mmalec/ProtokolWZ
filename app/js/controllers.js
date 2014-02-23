@@ -28,7 +28,7 @@ angular.module('myApp.controllers', []).
                     });
                 })
                 alert("promise " + defer.promise)
-                var protokul = $rootScope.protokul;
+                var protokol = $rootScope.protokol;
                 //$scope.i = defer.promise
                 //   });
 
@@ -58,27 +58,25 @@ angular.module('myApp.controllers', []).
         .controller('KontrolujacyListaCtrl', KontrolujacyListaCtrl)
         .controller('KontrolujacyNowyCtrl', KontrolujacyNowyCtrl)
         ;
-
-
 function KontrolujacyEdycjaCtrl($scope, $db, $routeParams, $location, $timeout, $rootScope) {
 
-$scope.zaladowany=false
+    $scope.zaladowany = false
     $db.get($routeParams.id, function(err, doc) {
         console.log(doc)
         if (err == null) {
-           
-            
-                //alert("dziala")
-                var _kontrolujacy = angular.fromJson(doc)
-                var stan = _kontrolujacy.valid;
-                _kontrolujacy.valid=stan;
-                 $rootScope.kontrolujacy = _kontrolujacy
-                 $scope.zaladowany=true
-              $scope.$apply()
-            }
 
 
+            //alert("dziala")
+            var _kontrolujacy = angular.fromJson(doc)
+            var stan = _kontrolujacy.valid;
+            _kontrolujacy.valid = stan;
+            $rootScope.kontrolujacy = _kontrolujacy
+            $scope.zaladowany = true
+            $scope.$apply()
         }
+
+
+    }
     )
 
 
@@ -88,7 +86,7 @@ $scope.zaladowany=false
         $scope.kontrolujacy.data_modyfikacji = new Date().toLocaleString();
         // $scope.kontrolujacy.key = "kontrolujacy"
         //  $scope.kontrolujacy.imiona="moje imiona"
-        // var record = angular.toJson($scope.protokul);
+        // var record = angular.toJson($scope.protokol);
         $db.put($scope.kontrolujacy, function(errors, response) {
             console.log(errors)
             if (errors === null) {
@@ -109,7 +107,6 @@ function KontrolujacyNowyCtrl($scope, $db, $location) {
     $scope.kontrolujacy = _kontrolujacy;
     $scope.uuid = UUID.generate();
     $scope.stopnie = stopnie;
-
     $scope.zmiana = function() {
         alert("zmiana");
     }
@@ -125,7 +122,7 @@ function KontrolujacyNowyCtrl($scope, $db, $location) {
         $scope.kontrolujacy.data_modyfikacji = new Date().toLocaleString();
         $scope.kontrolujacy.key = "kontrolujacy"
         //  $scope.kontrolujacy.imiona="moje imiona"
-        // var record = angular.toJson($scope.protokul);
+        // var record = angular.toJson($scope.protokol);
         $db.put($scope.kontrolujacy, function(errors, response) {
             console.log(errors)
             if (errors === null) {
@@ -158,7 +155,6 @@ function KontrolujacyListaCtrl($scope, $db) {
         // console.log($scope.lista)
         $scope.$apply();
     });
-
     $scope.usun = function(kontrolujacy) {
         $db.info(function(err, info) {
         })
@@ -178,7 +174,6 @@ function KontrolujacyListaCtrl($scope, $db) {
                     $scope.$apply();
                 });
                 $scope.$apply();
-
             }
         })
 
@@ -192,50 +187,163 @@ function ProtokolEdytujCtrl($rootScope, $scope, $db, $routeParams, $location, $t
     $scope.komunikat = 'Ładowanie protokołu...'
     $scope.uuid = $routeParams.id;
     $scope.adres = $location.absUrl();
-    $db.get($routeParams.id, function(errors, doc) {
-        $rootScope.protokul = angular.fromJson(doc)
-        // $scope.liczba_art = $rootScope.protokul.przepisy.length;
-        $scope.odnosniki = $rootScope.protokul.dane;
-        console.log($scope.odnosniki)
-        $scope.wybrany = $scope.odnosniki[0]
-        $scope.poprzedni = $scope.odnosniki[$scope.odnosniki.indexOf($scope.wybrany_odnosnik) - 1];
-        $scope.nastepny = $scope.odnosniki[$scope.odnosniki.indexOf($scope.wybrany_odnosnik) + 1]
-        $scope.$apply();
+    if ($rootScope.protokol == undefined) {
+        $db.get($routeParams.id, function(errors, doc) {
+            $rootScope.protokol = angular.fromJson(doc)
+            //     $scope.liczba_art = $rootScope.protokol.przepisy.length;
+            $scope.odnosniki = $rootScope.protokol.dane;
+            console.log($scope.odnosniki)
+            $rootScope.wybrany = $scope.odnosniki[0]
+            $scope.poprzedni = $scope.odnosniki[$scope.odnosniki.indexOf($scope.wybrany) - 1];
+            $scope.nastepny = $scope.odnosniki[$scope.odnosniki.indexOf($scope.wybrany) + 1]
+            $scope.$apply();
+        })
+    }
+    else {
+// alert($routeParams.id + " " + $rootScope.protokol._id)
+        if ($routeParams.id != $rootScope.protokol._id) {
+            $db.get($routeParams.id, function(errors, doc) {
+                $rootScope.protokol = angular.fromJson(doc)
+                // $scope.liczba_art = $rootScope.protokol.przepisy.length;
+                $scope.odnosniki = $rootScope.protokol.dane;
+                console.log($scope.odnosniki)
+                //  var step = $location.search('step')
+                $rootScope.wybrany = $scope.odnosniki[0]
+                // alert("step " + step)
+                $scope.poprzedni = $scope.odnosniki[$scope.odnosniki.indexOf($scope.wybrany) - 1];
+                $scope.nastepny = $scope.odnosniki[$scope.odnosniki.indexOf($scope.wybrany) + 1]
+                $scope.$apply();
+            })
+        }
+        else {
+            $scope.odnosniki = $rootScope.protokol.dane;
+            $rootScope.wybrany = $scope.odnosniki[$routeParams.index_odnosnika]
+            // alert("step " + step)
+            angular.forEach($rootScope.protokol.dane, function(odnosnik) {
+                odnosnik.aktywny = false;
+                console.log('zmianiam na flase');
+            });
+            $rootScope.wybrany.aktywny = true;
+            $scope.poprzedni = $scope.odnosniki[$scope.odnosniki.indexOf($scope.wybrany) - 1];
+            $scope.nastepny = $scope.odnosniki[$scope.odnosniki.indexOf($scope.wybrany) + 1]
+            //  $scope.$apply();
+        }
+    }
 
-    })
 
     $scope.klick = function(odnosnik) {
-        $scope.wybrany = null;
+        $rootScope.wybrany = null;
         //$scope.$apply();
         //alert('dziala')
         $timeout(function() {
 
 
-            angular.forEach($rootScope.protokul.dane, function(odnosnik) {
-                odnosnik.aktywny = false;
-                console.log('zmianiam na flase');
-            });
-            odnosnik.aktywny = true;
-            $scope.wybrany = odnosnik;
-            $scope.poprzedni = $rootScope.protokul.dane[$rootScope.protokul.dane.indexOf(odnosnik) - 1];
-            $scope.nastepny = $rootScope.protokul.dane[$rootScope.protokul.dane.indexOf(odnosnik) + 1]
+
+            $rootScope.wybrany = odnosnik;
+            $scope.poprzedni = $rootScope.protokol.dane[$rootScope.protokol.dane.indexOf(odnosnik) - 1];
+            $scope.nastepny = $rootScope.protokol.dane[$rootScope.protokol.dane.indexOf(odnosnik) + 1]
+
+            //  $location.hash([$rootScope.protokol.dane.indexOf(odnosnik)])
+            // $routeParams.index_odnosnika= $rootScope.protokol.dane.indexOf(odnosnik)           
+            // $location.search('step', $rootScope.protokol.dane.indexOf(odnosnik));
+            $location.path('protokol/edytuj/' + $rootScope.protokol._id + '/' + $rootScope.protokol.dane.indexOf(odnosnik))
+            //alert($location.absUrl());
+            //$location.replace();
         }, 0);
     }
 
 
 }
 
+function ProtokolDodawanieKontrolujacychCtrl($scope, $rootScope, $db, $timeout) {
+    function map(doc) {
+        if (doc.type == 'kontrolujacy') {
+            emit(doc, null);
+        }
+    }
+    $timeout(function() {
 
+
+
+
+        $db.query({map: map}, function(err, response) {
+
+            console.log(err)
+            // console.log(response)
+            var _kontrolujacy = angular.fromJson(response.rows);
+            $scope.znalezionych = _kontrolujacy.length
+            console.log(_kontrolujacy)
+
+            console.log($rootScope.wybrany.lista_kontrolujacych)
+            //alert('przed if')
+            try {
+                if ($rootScope.wybrany.lista_kontrolujacych.length > 0) {
+                 //   alert('wpetli')
+                   
+                    angular.forEach($rootScope.wybrany.lista_kontrolujacych, function(kontrolujacy_z_listy) {
+                        angular.forEach(_kontrolujacy, function(kont_z_bazy) {
+                            if (kont_z_bazy.key._id === kontrolujacy_z_listy._id) {
+                                 //  alert(kont_z_bazy.key._id +'\n'+ kontrolujacy_z_listy._id)
+                                   var index = _kontrolujacy.indexOf(kont_z_bazy);
+                                   _kontrolujacy.splice(index, 1);
+                            }
+                            
+                        })
+                    })
+                  
+                    $scope.lista = _kontrolujacy
+                    $scope.$apply();
+                }
+                else{
+                     $scope.lista = _kontrolujacy;
+           // $scope.$apply();
+           // alert('przed apply')
+            $scope.$apply();
+                }
+            } catch (err) {
+                console.log(err)
+                $scope.lista = _kontrolujacy;
+                $scope.$apply();
+            }
+
+
+// console.log($scope.lista)
+           
+        });
+    }, 0)
+
+
+    $scope.dodaj_do_listy = function(kontrolujacy) {
+        // alert("dodawanie do listy")
+        this.wybrany.lista_kontrolujacych.push(kontrolujacy);
+        var index = this.lista.indexOf(kontrolujacy);
+        var nowa = [];
+        angular.forEach($scope.lista, function(kontr) {
+            if (kontr.key._id != kontrolujacy._id) {
+                nowa.push(kontr)
+            }
+        })
+        $scope.lista = nowa;
+        //  this.lista.splice(index,1)
+    }
+
+    $scope.usun_z_listy_kontrolujacych = function(kontrolujacy) {
+// alert("usuwanie z listy")
+        var index = this.wybrany.lista_kontrolujacych.indexOf(kontrolujacy);
+        this.wybrany.lista_kontrolujacych.splice(index, 1);
+        this.lista.push({key: kontrolujacy})
+    }
+}
 
 function  ProtokolNowyCtrl($scope, $db, $log, $location) {
-    $scope.protokul = protokul;
+    $scope.protokol = protokol;
     $scope.uuid = UUID.generate();
     $scope.zapisz = function() {
         $log.info('Zapis protokołu')
-        $scope.protokul._id = $scope.uuid
-        $scope.protokul.data_utworzenia = new Date().toLocaleString();
-        var record = angular.toJson($scope.protokul);
-        $db.put($scope.protokul, function(errors, response) {
+        $scope.protokol._id = $scope.uuid
+        $scope.protokol.data_utworzenia = new Date().toLocaleString();
+        var record = angular.toJson($scope.protokol);
+        $db.put($scope.protokol, function(errors, response) {
             console.log(errors)
             if (errors === null) {
 
@@ -248,7 +356,6 @@ function  ProtokolNowyCtrl($scope, $db, $log, $location) {
     }
 }
 ;
-
 function ProtokolyCtrl($scope, $timeout, $db) {
 
     $db.allDocs({include_docs: true}, function(err, response) {
@@ -264,8 +371,6 @@ function ProtokolyCtrl($scope, $timeout, $db) {
     });
 }
 ;
-
-
 function PodstawaPrawnaCtrl($scope) {
 
     $scope.czy_dodac_wlasne = false;
@@ -275,20 +380,17 @@ function PodstawaPrawnaCtrl($scope) {
         wymagany: false,
         dodany: true
     };
-
-
-
     $scope.dodajPrzepis = function() {
         //alert('dziala')
-        $scope.wybrany.przepisy.push($scope.przepis);
+        $rootScope.wybrany.przepisy.push($scope.przepis);
         $scope.przepis = przepis.constructor();
         $scope.czy_dodac_wlasne = false;
         $scope.edycjaPrzepisu = false;
     }
 
     $scope.usunPrzepis = function(przepis) {
-        var index = $scope.wybrany.przepisy.indexOf(przepis);
-        $scope.wybrany.przepisy.splice(index, 1);
+        var index = $rootScope.wybrany.przepisy.indexOf(przepis);
+        $rootScope.wybrany.przepisy.splice(index, 1);
     }
 
     $scope.blurPrzepis = function(valid) {
@@ -305,7 +407,6 @@ function PodstawaPrawnaCtrl($scope) {
     }
 
     var startyTytulPrzepisu = "";
-
     $scope.edytujPrzepis = function(przepis) {
         $scope.edycjaPrzepisu = true;
         startyTytulPrzepisu = przepis.nazwa;
@@ -360,7 +461,6 @@ function PodstawaPrawnaCtrl($scope) {
 
 
         });
-
         if (czy_jest_wybrany_art === true) {
             console.log("jest wybrany:" + czy_jest_wybrany_art)
             angular.forEach($scope.wybrany.przepisy, function(artykul) {
@@ -382,10 +482,9 @@ function PodstawaPrawnaCtrl($scope) {
 
 
 function RodzajKontroliCtrl($scope, $rootScope) {
-    //alert('dziala');
+//alert('dziala');
 
     $scope.edycjaRodzajuKontroli = false;
-
     $scope.klickChceDodac = function(nowyRodzaj) {
         $scope.rk = {
             nazwa: '',
@@ -396,7 +495,7 @@ function RodzajKontroliCtrl($scope, $rootScope) {
     }
 
     $scope.dodajRodzajKontroli = function() {
-        $scope.wybrany.rodzaje_kontroli.push($scope.rk);
+        $rootScope.wybrany.rodzaje_kontroli.push($scope.rk);
         $scope.czy_dodac_wlasne = false
     }
 
@@ -410,14 +509,13 @@ function RodzajKontroliCtrl($scope, $rootScope) {
 
         if (valid === false) {
             $scope.rk.nazwa = $scope.staraNazwa;
-
         }
         $scope.edycjaRodzajuKontroli = false
     }
 
     $scope.usunRodzajKontroli = function(rk) {
-        var index = $scope.wybrany.rodzaje_kontroli.indexOf(rk)
-        $scope.wybrany.rodzaje_kontroli.splice(index, 1);
+        var index = $rootScope.wybrany.rodzaje_kontroli.indexOf(rk)
+        $rootScope.wybrany.rodzaje_kontroli.splice(index, 1);
     }
 
 

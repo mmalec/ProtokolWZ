@@ -56,7 +56,9 @@ var protokul = {
             ]},
         {nazwa: "Kontrolujący",
             aktywny: false,
-            szablon_edycji: 'partials/protokolTpls/kontrolujacy.html'},
+            szablon_edycji: 'szablony/protokol/lista_kontrolujacych.html',
+            lista_kontrolujacych:[]
+        },
         {nazwa: "Kontrolowani",
             aktywny: false,
             szablon_edycji: 'partials/protokolTpls/kontrolujacy.html'}

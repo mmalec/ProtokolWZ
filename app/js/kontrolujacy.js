@@ -17,7 +17,8 @@ var kontrolujacy = {
     upowaznienie_nr: '',
     upowaznienie_data: '',
     upowaznienie_wydanie_przez: '',
-    valid:false
+    valid:false,
+    szablon_edycji:'szablony/kontrolujacy/form.html'
 
 }
 
