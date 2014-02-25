@@ -1,6 +1,6 @@
 
 
-var protokul = {
+var protokol = {
     id: '1',
     data_utworzenia: '',
     data_wystawienia: '',

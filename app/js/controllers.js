@@ -255,7 +255,7 @@ function ProtokolEdytujCtrl($rootScope, $scope, $db, $routeParams, $location, $t
 
 }
 
-function ProtokolDodawanieKontrolujacychCtrl($scope, $rootScope, $db, $timeout) {
+function ProtokolDodawanieKontrolujacychCtrl($scope, $rootScope, $db, $timeout, $route ) {
     function map(doc) {
         if (doc.type == 'kontrolujacy') {
             emit(doc, null);
@@ -312,6 +312,26 @@ function ProtokolDodawanieKontrolujacychCtrl($scope, $rootScope, $db, $timeout) 
         });
     }, 0)
 
+$scope.zmiana_zakladki=function(){
+    var tmp = $scope.lista
+    
+    $scope.lista=null
+    
+    $timeout(function(){
+       //$route.reload();
+       $scope.zaladuj=false
+       $scope.lista=tmp
+       $scope.$apply()
+    }, 1100) 
+
+    //$scope.$apply()
+    $timeout(function(){
+     
+       $scope.zaladuj=true
+       $scope.$apply()
+     //  $route.reload();
+    }, 2200) 
+}
 
     $scope.dodaj_do_listy = function(kontrolujacy) {
         // alert("dodawanie do listy")

@@ -4205,7 +4205,7 @@ textarea.input-group-sm > .input-group-btn > .btn {
 .nav-tabs.nav-justified > .active > a,
 .nav-tabs.nav-justified > .active > a:hover,
 .nav-tabs.nav-justified > .active > a:focus {
-  border: 1px solid #dddddd;
+  /* border: 1px solid #dddddd; */
 }
 
 @media (min-width: 768px) {
@@ -4305,6 +4305,12 @@ textarea.input-group-sm > .input-group-btn > .btn {
 
 .tab-content > .tab-pane {
   display: none;
+}
+
+.tab-content {
+  border-left: 1px solid #dddddd;;
+  border-right: 1px solid #dddddd;;
+  border-bottom: 1px solid #dddddd;;
 }
 
 .tab-content > .active {

@@ -5,18 +5,24 @@ To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
 
-<div class="col-md-9" role="main" ng-controller="ProtokolDodawanieKontrolujacychCtrl">
-            <h1>Lista kontrolujących</h1>
-            <div class="panel panel-default">
-                <div class="panel-body">
-                 <ul class="list-group">
+<div class="col-md-9" role="main" ng-controller="ProtokolDodawanieKontrolujacychCtrl" >
+    <h1>Lista kontrolujących</h1>
+
+
+
+    <tabset justified="true"  >
+        <tab heading="Lista kontrolujących" ng-click="zmiana_zakladki()">
+            <div class="" >
+                <div class="panel-body" >
+                    <br>
+                    <ul class="list-group" >
                         <li class="thumbnail animate-repeat"  ng-repeat="kontrolujacy in wybrany.lista_kontrolujacych| filter:q | orderBy:'-key.data_utworzenia' track by $index ">
-                         {{$index + 1}}. <a class="bs-about" href="#/kontrolujacy/edycja/{{kontrolujacy._id}}"> {{kontrolujacy.stopien}} {{kontrolujacy.imiona}} {{kontrolujacy.nazwisko}}</a>
+                            {{$index + 1}}. <a class="bs-about" href="#/kontrolujacy/edycja/{{kontrolujacy._id}}"> {{kontrolujacy.stopien}} {{kontrolujacy.imiona}} {{kontrolujacy.nazwisko}}</a>
                             <div class="btn-group right pull-right">
 
                                 <div class=" btn-danger btn-sm " ng-click="usun_z_listy_kontrolujacych(kontrolujacy)">Usuń</div>
                             </div>
-                           
+
                             <div>{{kontrolujacy.stanowisko}} {{kontrolujacy.nazwa_jednostki_organizacyjnej}}</div>
                             <div>
                                 <span class="small">nr upoważnienia: </span> {{kontrolujacy.upowaznienie_nr}}
@@ -32,14 +38,20 @@ and open the template in the editor.
                                 <em class="small">{{kontrolujacy.type}}</em>
                                 <em class='small'>{{kontrolujacy._id}}</em>
                             </p>
-                        
-                        </li>
-                 </ul>
-                </div>
 
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </tab>
+        <tab heading="Wyszukiwanie" ng-click="zmiana_zakladki()">
+            <div class="">
+
+
+                <br>
                 <div class="panel-heading">
                     <input class="form-control" placeholder="szukaj" type="search" ng-model="q"/></div>
-                <div class="panel-body ">
+                <div class="panel-body " >
 
                     Liczba znalezionych  {{liczba_znalezionych}}
 
@@ -52,7 +64,7 @@ and open the template in the editor.
 
                                 <div class=" btn-info btn-sm " ng-click="dodaj_do_listy(kontrolujacy.key)">Dodaj</div>
                             </div>
-                           
+
                             <div>{{kontrolujacy.key.stanowisko}} {{kontrolujacy.key.nazwa_jednostki_organizacyjnej}}</div>
                             <div>
                                 <span class="small">nr upoważnienia: </span> {{kontrolujacy.key.upowaznienie_nr}}
@@ -73,7 +85,9 @@ and open the template in the editor.
                     </ul>
 
                 </div>
-
             </div>
+        </tab>
+    </tabset>
 
-        </div>
+
+</div>
