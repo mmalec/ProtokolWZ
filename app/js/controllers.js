@@ -58,9 +58,40 @@ angular.module('myApp.controllers', []).
         .controller('KontrolujacyListaCtrl', KontrolujacyListaCtrl)
         .controller('KontrolujacyNowyCtrl', KontrolujacyNowyCtrl)
         ;
+
+
+function KontrolujacyEdycjaModalCtrl($scope, $db, $routeParams, $location, $timeout, $rootScope, $modalInstance) {
+    $scope.zapisz = function() {
+         
+        // $db = null;
+        // $db = new PouchDB(_DB_NAME)
+
+        $rootScope.kontrolujacy.data_modyfikacji = new Date().toLocaleString();
+        // $scope.kontrolujacy.key = "kontrolujacy"
+        //  $scope.kontrolujacy.imiona="moje imiona"
+        // var record = angular.toJson($scope.protokol);
+        console.log($rootScope.kontrolujacy._rev)
+        //$rootScope.kontrolujacy._rev = UUID.generate()
+        $db.put($rootScope.kontrolujacy, function(errors, response) {
+            console.log(errors)
+            if (errors === null) {
+                console.log(response)
+                
+               $rootScope.kontrolujacy._rev = response.rev
+                $modalInstance.close();
+                // $location.path('/kontrolujacy/lista')
+                $scope.$apply()
+            }
+        })
+
+
+    }
+}
+
 function KontrolujacyEdycjaCtrl($scope, $db, $routeParams, $location, $timeout, $rootScope) {
 
-    $scope.zaladowany = false
+    // $scope.zaladowany = false
+
     $db.get($routeParams.id, function(err, doc) {
         console.log(doc)
         if (err == null) {
@@ -71,23 +102,21 @@ function KontrolujacyEdycjaCtrl($scope, $db, $routeParams, $location, $timeout, 
             var stan = _kontrolujacy.valid;
             _kontrolujacy.valid = stan;
             $rootScope.kontrolujacy = _kontrolujacy
-            $scope.zaladowany = true
+            // $scope.zaladowany = true
             $scope.$apply()
         }
+    })
 
-
-    }
-    )
 
 
 
     $scope.zapisz = function() {
 
-        $scope.kontrolujacy.data_modyfikacji = new Date().toLocaleString();
+        $rootScope.kontrolujacy.data_modyfikacji = new Date().toLocaleString();
         // $scope.kontrolujacy.key = "kontrolujacy"
         //  $scope.kontrolujacy.imiona="moje imiona"
         // var record = angular.toJson($scope.protokol);
-        $db.put($scope.kontrolujacy, function(errors, response) {
+        $db.put($rootScope.kontrolujacy, function(errors, response) {
             console.log(errors)
             if (errors === null) {
 
@@ -123,11 +152,18 @@ function KontrolujacyNowyCtrl($scope, $db, $location) {
         $scope.kontrolujacy.key = "kontrolujacy"
         //  $scope.kontrolujacy.imiona="moje imiona"
         // var record = angular.toJson($scope.protokol);
+        angular.forEach(this.lista, function(k_zlisty){
+                    if(k_zlisty._id === $rootScope.kontrolujacy._id){
+                        alert('znaleziony')
+                    }
+                })
         $db.put($scope.kontrolujacy, function(errors, response) {
             console.log(errors)
             if (errors === null) {
 
                 $location.path('/kontrolujacy/lista')
+                
+                $modalInstance.close()
                 $scope.$apply()
             }
         })
@@ -255,7 +291,7 @@ function ProtokolEdytujCtrl($rootScope, $scope, $db, $routeParams, $location, $t
 
 }
 
-function ProtokolDodawanieKontrolujacychCtrl($scope, $rootScope, $db, $timeout, $route ) {
+function ProtokolDodawanieKontrolujacychCtrl($scope, $rootScope, $db, $timeout, $route, $modal) {
     function map(doc) {
         if (doc.type == 'kontrolujacy') {
             emit(doc, null);
@@ -271,6 +307,7 @@ function ProtokolDodawanieKontrolujacychCtrl($scope, $rootScope, $db, $timeout, 
             console.log(err)
             // console.log(response)
             var _kontrolujacy = angular.fromJson(response.rows);
+
             $scope.znalezionych = _kontrolujacy.length
             console.log(_kontrolujacy)
 
@@ -278,60 +315,80 @@ function ProtokolDodawanieKontrolujacychCtrl($scope, $rootScope, $db, $timeout, 
             //alert('przed if')
             try {
                 if ($rootScope.wybrany.lista_kontrolujacych.length > 0) {
-                 //   alert('wpetli')
-                   
+                    //   alert('wpetli')
+
                     angular.forEach($rootScope.wybrany.lista_kontrolujacych, function(kontrolujacy_z_listy) {
                         angular.forEach(_kontrolujacy, function(kont_z_bazy) {
                             if (kont_z_bazy.key._id === kontrolujacy_z_listy._id) {
-                                 //  alert(kont_z_bazy.key._id +'\n'+ kontrolujacy_z_listy._id)
-                                   var index = _kontrolujacy.indexOf(kont_z_bazy);
-                                   _kontrolujacy.splice(index, 1);
+                                //  alert(kont_z_bazy.key._id +'\n'+ kontrolujacy_z_listy._id)
+                                var index = _kontrolujacy.indexOf(kont_z_bazy);
+                                _kontrolujacy.splice(index, 1);
                             }
-                            
+
                         })
                     })
-                  
-                    $scope.lista = _kontrolujacy
+
+                    // $scope.lista = _kontrolujacy
+                    $scope.lista_tmp = _kontrolujacy
                     $scope.$apply();
                 }
-                else{
-                     $scope.lista = _kontrolujacy;
-           // $scope.$apply();
-           // alert('przed apply')
-            $scope.$apply();
+                else {
+                    //$scope.lista = _kontrolujacy;
+                    $scope.lista_tmp = _kontrolujacy
+                    // $scope.$apply();
+                    // alert('przed apply')
+                    $scope.$apply();
                 }
             } catch (err) {
                 console.log(err)
-                $scope.lista = _kontrolujacy;
+                // $scope.lista = _kontrolujacy;
+                $scope.lista_tmp = _kontrolujacy
                 $scope.$apply();
             }
 
 
 // console.log($scope.lista)
-           
+
         });
     }, 0)
 
-$scope.zmiana_zakladki=function(){
-    var tmp = $scope.lista
-    
-    $scope.lista=null
-    
-    $timeout(function(){
-       //$route.reload();
-       $scope.zaladuj=false
-       $scope.lista=tmp
-       $scope.$apply()
-    }, 1100) 
 
-    //$scope.$apply()
-    $timeout(function(){
-     
-       $scope.zaladuj=true
-       $scope.$apply()
-     //  $route.reload();
-    }, 2200) 
-}
+
+
+    $scope.zmiana_zakladki = function(nr_zakladki) {
+
+        if (nr_zakladki == 1) {
+            $scope.lista_tmp = $scope.lista
+            $scope.lista = null;
+
+
+            $scope.lista_kontrolujacych_tmp = $scope.wybrany.lista_kontrolujacych;
+
+
+        }
+        if (nr_zakladki == 2) {
+            $scope.lista = $scope.lista_tmp
+            $scope.lista_kontrolujacych_tmp = null;
+        }
+
+
+
+    }
+
+    $scope.openEdytujKontrolujacyModal = function(kontrolujacy) {
+        $rootScope.kontrolujacy = angular.fromJson(angular.toJson(kontrolujacy))
+        
+        //  $rootScope.modalMode = true;
+        var modalInstance = $modal.open({
+            templateUrl: 'szablony/kontrolujacy/modal.html',
+            controller: KontrolujacyEdycjaModalCtrl,
+            resolve: {
+                items: function() {
+                    return $scope.items;
+                }
+            }
+        });
+    }
 
     $scope.dodaj_do_listy = function(kontrolujacy) {
         // alert("dodawanie do listy")
@@ -351,7 +408,7 @@ $scope.zmiana_zakladki=function(){
 // alert("usuwanie z listy")
         var index = this.wybrany.lista_kontrolujacych.indexOf(kontrolujacy);
         this.wybrany.lista_kontrolujacych.splice(index, 1);
-        this.lista.push({key: kontrolujacy})
+        this.lista_tmp.push({key: kontrolujacy})
     }
 }
 

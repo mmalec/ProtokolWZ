@@ -11,13 +11,13 @@ and open the template in the editor.
 
 
     <tabset justified="true"  >
-        <tab heading="Lista kontrolujących" ng-click="zmiana_zakladki()">
+        <tab heading="Lista kontrolujących" ng-click="zmiana_zakladki(1)">
             <div class="" >
                 <div class="panel-body" >
                     <br>
                     <ul class="list-group" >
-                        <li class="thumbnail animate-repeat"  ng-repeat="kontrolujacy in wybrany.lista_kontrolujacych| filter:q | orderBy:'-key.data_utworzenia' track by $index ">
-                            {{$index + 1}}. <a class="bs-about" href="#/kontrolujacy/edycja/{{kontrolujacy._id}}"> {{kontrolujacy.stopien}} {{kontrolujacy.imiona}} {{kontrolujacy.nazwisko}}</a>
+                        <li class="thumbnail animate-repeat"  ng-repeat="kontrolujacy in lista_kontrolujacych_tmp| filter:q | orderBy:'-key.data_utworzenia' track by $index ">
+                            {{$index + 1}}. {{kontrolujacy.stopien}} {{kontrolujacy.imiona}} {{kontrolujacy.nazwisko}}
                             <div class="btn-group right pull-right">
 
                                 <div class=" btn-danger btn-sm " ng-click="usun_z_listy_kontrolujacych(kontrolujacy)">Usuń</div>
@@ -44,7 +44,7 @@ and open the template in the editor.
                 </div>
             </div>
         </tab>
-        <tab heading="Wyszukiwanie" ng-click="zmiana_zakladki()">
+        <tab heading="Wyszukiwanie" ng-click="zmiana_zakladki(2)">
             <div class="">
 
 
@@ -59,7 +59,7 @@ and open the template in the editor.
                         <li class="thumbnail animate-repeat"  ng-repeat="kontrolujacy in lista| filter:q | orderBy:'-key.data_utworzenia' track by $index ">
 
 
-                            {{$index + 1}}. <a class="bs-about" href="#/kontrolujacy/edycja/{{kontrolujacy.key._id}}"> {{kontrolujacy.key.stopien}} {{kontrolujacy.key.imiona}} {{kontrolujacy.key.nazwisko}}</a>
+                            {{$index + 1}}. <a class="bs-about" ng-click="openEdytujKontrolujacyModal(kontrolujacy.key)"> {{kontrolujacy.key.stopien}} {{kontrolujacy.key.imiona}} {{kontrolujacy.key.nazwisko}}</a>
                             <div class="btn-group right pull-right">
 
                                 <div class=" btn-info btn-sm " ng-click="dodaj_do_listy(kontrolujacy.key)">Dodaj</div>
