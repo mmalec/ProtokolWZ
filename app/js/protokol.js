@@ -7,14 +7,14 @@ var protokol = {
     nr_dokumentu: '',
     miejscowosc: '',
     tytul: '',
-    dane: [
-        {
+    dane: {
+        informacje_podstawowe:{
             nazwa: 'Informacje podstawowe',
             komunikat:'Informacje podstawowe',
             aktywny: true,
             valid:false,
             szablon_edycji: 'partials/protokolTpls/informacje_podstawowe.html'},
-        {
+        podstawa_prawna:{
             nazwa: 'Podstawa prawna',
             komunikat: "Podstawa prawna. (Wybrać właściwe podstawy)",
             aktywny: false,
@@ -40,7 +40,7 @@ var protokol = {
                     
                 }
             ]},
-        {
+        rodzaj_kontroli:{
             nazwa: 'Rodzaj kontroli',
             komunikat:'Rodzaj kontroli (wybrać właściwą)',
             aktywny: false,
@@ -54,16 +54,16 @@ var protokol = {
                 {nazwa:'odbiór', wybrany:false, wymagany:true},
                 
             ]},
-        {nazwa: "Kontrolujący",
+        kontrolujacy:{nazwa: "Kontrolujący",
             aktywny: false,
             szablon_edycji: 'szablony/protokol/lista_kontrolujacych.html',
             lista_kontrolujacych:[]
         },
-        {nazwa: "Kontrolowani",
+        kontrolowani:{nazwa: "Kontrolowani",
             aktywny: false,
             szablon_edycji: 'partials/protokolTpls/kontrolujacy.html'}
 
 
-    ],
+    },
     objekty: [],
 };

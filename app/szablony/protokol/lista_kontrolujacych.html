@@ -50,7 +50,15 @@ and open the template in the editor.
 
                 <br>
                 <div class="panel-heading">
-                    <input class="form-control" placeholder="szukaj" type="search" ng-model="q"/></div>
+                    <form novalidate >
+                    <div class="input-group">
+                    <input class="form-control" placeholder="szukaj"  ng-model="q"/>
+                    <span class="input-group-btn">
+                        <button class="btn btn-success " type="button" ng-click="openEdytujKontrolujacyModal('nowy')">Nowy</button>
+                    </span>
+                    </div>
+                    </form>
+                </div>
                 <div class="panel-body " >
 
                     Liczba znalezionych  {{liczba_znalezionych}}
