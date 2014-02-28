@@ -135,33 +135,6 @@ function KontrolujacyNowyCtrl($scope, $db, $location) {
 
 
 
-    $scope.zapisz = function() {
-
-        $scope.kontrolujacy._id = $scope.uuid;
-        //  $scope.kontrolujacy._key='kontrolujacy';
-        $scope.kontrolujacy.data_utworzenia = new Date().toLocaleString();
-        $scope.kontrolujacy.data_modyfikacji = new Date().toLocaleString();
-        $scope.kontrolujacy.key = "kontrolujacy"
-        //  $scope.kontrolujacy.imiona="moje imiona"
-        // var record = angular.toJson($scope.protokol);
-        angular.forEach(this.lista, function(k_zlisty) {
-            if (k_zlisty._id === $rootScope.kontrolujacy._id) {
-                alert('znaleziony')
-            }
-        })
-        $db.put($scope.kontrolujacy, function(errors, response) {
-            console.log(errors)
-            if (errors === null) {
-
-                $location.path('/kontrolujacy/lista')
-
-                $modalInstance.close()
-                $scope.$apply()
-            }
-        })
-
-
-    }
 
 }
 
@@ -210,14 +183,14 @@ function KontrolujacyListaCtrl($scope, $db) {
 }
 
 function ProtokolEdytujCtrl($rootScope, $scope, $db, $routeParams, $location, $timeout) {
-    
-    
+
+
     $scope.hashTable = {
-        nazwa:'nazwa1',
-        nazwa2:'nazwa2'
+        nazwa: 'nazwa1',
+        nazwa2: 'nazwa2'
     }
-    
-    angular.forEach($scope.hashTable, function(el){
+
+    angular.forEach($scope.hashTable, function(el) {
         console.log(el)
     })
 
@@ -225,18 +198,18 @@ function ProtokolEdytujCtrl($rootScope, $scope, $db, $routeParams, $location, $t
     $scope.komunikat = 'Ładowanie protokołu...'
     $scope.uuid = $routeParams.id;
     $scope.adres = $location.absUrl();
-    
-    $scope.odnosniki = []    
-   
-   
-    
+
+    $scope.odnosniki = []
+
+
+
     if ($rootScope.protokol == undefined) {
         $db.get($routeParams.id, function(errors, doc) {
             $rootScope.protokol = angular.fromJson(doc)
             //     $scope.liczba_art = $rootScope.protokol.przepisy.length;
-             angular.forEach($rootScope.protokol.dane, function(el){
-        $scope.odnosniki.push(el)
-    })
+            angular.forEach($rootScope.protokol.dane, function(el) {
+                $scope.odnosniki.push(el)
+            })
             console.log($scope.odnosniki)
             $rootScope.wybrany = $scope.odnosniki[0]
             $scope.poprzedni = $scope.odnosniki[$scope.odnosniki.indexOf($scope.wybrany) - 1];
@@ -250,10 +223,10 @@ function ProtokolEdytujCtrl($rootScope, $scope, $db, $routeParams, $location, $t
             $db.get($routeParams.id, function(errors, doc) {
                 $rootScope.protokol = angular.fromJson(doc)
                 // $scope.liczba_art = $rootScope.protokol.przepisy.length;
-               // $scope.odnosniki = $rootScope.protokol.dane;
-                angular.forEach($rootScope.protokol.dane, function(el){
-        $scope.odnosniki.push(el)
-    })
+                // $scope.odnosniki = $rootScope.protokol.dane;
+                angular.forEach($rootScope.protokol.dane, function(el) {
+                    $scope.odnosniki.push(el)
+                })
                 console.log($scope.odnosniki)
                 //  var step = $location.search('step')
                 $rootScope.wybrany = $scope.odnosniki[0]
@@ -265,9 +238,9 @@ function ProtokolEdytujCtrl($rootScope, $scope, $db, $routeParams, $location, $t
         }
         else {
             //$scope.odnosniki = $rootScope.protokol.dane;
-             angular.forEach($rootScope.protokol.dane, function(el){
-        $scope.odnosniki.push(el)
-    })
+            angular.forEach($rootScope.protokol.dane, function(el) {
+                $scope.odnosniki.push(el)
+            })
             $rootScope.wybrany = $scope.odnosniki[$routeParams.index_odnosnika]
             // alert("step " + step)
             angular.forEach($rootScope.protokol.dane, function(odnosnik) {
@@ -376,9 +349,11 @@ function ProtokolDodawanieKontrolujacychCtrl($scope, $rootScope, $db, $timeout, 
         if (nr_zakladki == 1) {
             $scope.lista_tmp = $scope.lista
             $scope.lista = null;
+            $scope.lista_kontrolujacych_tmp = null;
+            $timeout(function() {
+                $scope.lista_kontrolujacych_tmp = $scope.wybrany.lista_kontrolujacych;
+            }, 500)
 
-
-            $scope.lista_kontrolujacych_tmp = $scope.wybrany.lista_kontrolujacych;
 
 
         }
@@ -392,19 +367,23 @@ function ProtokolDodawanieKontrolujacychCtrl($scope, $rootScope, $db, $timeout, 
     }
 
     $scope.openEdytujKontrolujacyModal = function(z_kontrolujacy) {
-        
-        if(z_kontrolujacy==='nowy'){
+
+        if (z_kontrolujacy === 'nowy') {
             var nowy_kontrolujacy = angular.fromJson(angular.toJson(kontrolujacy))
-    $rootScope.kontrolujacy = nowy_kontrolujacy;
-    $rootScope.kontrolujacy._id = UUID.generate();
+            $rootScope.kontrolujacy = nowy_kontrolujacy;
+            $rootScope.kontrolujacy._id = UUID.generate();
+                        $rootScope.kontrolujacy.data_utworzenia = new Date().toLocaleString();
+
         }
-        else{
-        $rootScope.kontrolujacy = angular.fromJson(angular.toJson(z_kontrolujacy))
+        else {
+            $rootScope.kontrolujacy = angular.fromJson(angular.toJson(z_kontrolujacy))
         }
         //  $rootScope.modalMode = true;
         var modalInstance = $modal.open({
             templateUrl: 'szablony/kontrolujacy/modal.html',
             controller: KontrolujacyEdycjaModalCtrl,
+            windowClass:'kontrolujacyModalWindow',
+            backdrop:'static'
             // resolve: {
             //    items: function() {
             //       return $scope.items;
@@ -414,10 +393,11 @@ function ProtokolDodawanieKontrolujacychCtrl($scope, $rootScope, $db, $timeout, 
 
         modalInstance.result.then(function() {
             console.log('zapisywanie')
-            
-            
+
+
             //  $scope.selected = selectedItem;
             $rootScope.kontrolujacy.data_modyfikacji = new Date().toLocaleString();
+            
             // $scope.kontrolujacy.key = "kontrolujacy"
             //  $scope.kontrolujacy.imiona="moje imiona"
             // var record = angular.toJson($scope.protokol);
@@ -429,22 +409,22 @@ function ProtokolDodawanieKontrolujacychCtrl($scope, $rootScope, $db, $timeout, 
                     console.log(response)
 
                     $rootScope.kontrolujacy._rev = response.rev
-                  //  alert('kont ' + _kontrolujacy)
+                    //  alert('kont ' + _kontrolujacy)
                     console.log(z_kontrolujacy)
-                    if(z_kontrolujacy==='nowy'){
+                    if (z_kontrolujacy === 'nowy') {
                         alert('do listy')
-                        $scope.lista.push({key:$rootScope.kontrolujacy});
+                        $scope.lista.push({key: $rootScope.kontrolujacy});
                     }
-                    else{
-                    angular.forEach($scope.lista,function (zlisty){
-                     //   alert('w petli')
-                        if(zlisty.key._id==$rootScope.kontrolujacy._id){
-                            
-                            zlisty.key=$rootScope.kontrolujacy
-                          //  alert('znaleziony')
-                        }
-                    })
-                }
+                    else {
+                        angular.forEach($scope.lista, function(zlisty) {
+                            //   alert('w petli')
+                            if (zlisty.key._id == $rootScope.kontrolujacy._id) {
+
+                                zlisty.key = $rootScope.kontrolujacy
+                                //  alert('znaleziony')
+                            }
+                        })
+                    }
                     //$modalInstance.close();
                     // $location.path('/kontrolujacy/lista')
                     $scope.$apply()
@@ -452,15 +432,23 @@ function ProtokolDodawanieKontrolujacychCtrl($scope, $rootScope, $db, $timeout, 
             })
         }, function() {
             console.log('Zamknij')
-          //  $log.info('Modal dismissed at: ' + new Date());
+            //  $log.info('Modal dismissed at: ' + new Date());
         });
 
     }
 
     $scope.dodaj_do_listy = function(kontrolujacy) {
         // alert("dodawanie do listy")
-        this.wybrany.lista_kontrolujacych.push(kontrolujacy);
-        var index = this.lista.indexOf(kontrolujacy);
+        $rootScope.wybrany.lista_kontrolujacych.push(kontrolujacy);
+        $scope.lista_kontrolujacych_tmp=null;
+        $timeout(function(){
+           $scope.lista_kontrolujacych_tmp = $rootScope.wybrany.lista_kontrolujacych  
+           console.log($scope.lista_kontrolujacych_tmp)
+        },200)
+       
+        //  $scope.lista_kontrolujacych_tmp=this.wybrany.lista_kontrolujacych
+
+        var index = $scope.lista.indexOf(kontrolujacy);
         var nowa = [];
         angular.forEach($scope.lista, function(kontr) {
             if (kontr.key._id != kontrolujacy._id) {

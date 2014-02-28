@@ -16,7 +16,7 @@ and open the template in the editor.
                 <div class="panel-body" >
                     <br>
                     <ul class="list-group" >
-                        <li class="thumbnail animate-repeat"  ng-repeat="kontrolujacy in lista_kontrolujacych_tmp| filter:q | orderBy:'-key.data_utworzenia' track by $index ">
+                        <li class="thumbnail animate-repeat"  ng-repeat="kontrolujacy in lista_kontrolujacych_tmp | orderBy:'-key.data_utworzenia' track by $index ">
                             {{$index + 1}}. {{kontrolujacy.stopien}} {{kontrolujacy.imiona}} {{kontrolujacy.nazwisko}}
                             <div class="btn-group right pull-right">
 

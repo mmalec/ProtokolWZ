@@ -22,7 +22,10 @@ var app = angular.module('myApp', [
                         .when('/objekty', {templateUrl: 'szablony/objekty/lista.html', controller: 'ObjektyListaCtrl'})
                 .when('/kontrolujacy/nowy', {templateUrl: 'szablony/kontrolujacy/nowy.html', controller: 'KontrolujacyNowyCtrl'})
         .when('/kontrolujacy/edycja/:id', {templateUrl: 'szablony/kontrolujacy/edycja.html', controller: 'KontrolujacyEdycjaCtrl'})
-                   .when('/kontrolujacy/lista', {templateUrl: 'szablony/kontrolujacy/lista.html', controller: 'KontrolujacyListaCtrl'})
+                   .when('/kontrolujacy/lista', {templateUrl: 'szablony/kontrolujacy/lista_osob.html', controller: 'KontrolujacyListaCtrl'})
+                              .when('/osoby/lista', {templateUrl: 'szablony/osoby/lista_osob.html', controller: 'OsobyListaCtrl'})
+                              .when('/osoby/nowa', {templateUrl: 'szablony/osoby/nowa_osoba.html', controller: 'OsobyNowaCtrl'})
+
                         .otherwise({redirectTo: '/view1/'});
             }]);
 

@@ -1,5 +1,9 @@
 /* app css stylesheet */
 
+div.kontrolujacyModalWindow .modal-content{
+    width: 800px;
+}
+
 #top_bar{
     position: fixed ;
     width: 100%;

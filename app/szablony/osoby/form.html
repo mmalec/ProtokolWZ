@@ -1,0 +1,36 @@
+
+
+<form name="osobaForm" novalidate >
+    <div  class=" alert " ng-class="{'alert-success':osobaForm.$valid, 'alert-warning':!osobaForm.$valid}">
+        <br>
+      
+        <br>
+        <div class="row" >
+
+            <div class="col-xs-6"  ng-class="{error: osobaForm.osoba.imiona.$dirty && osobaForm.osoba.imiona.$invalid}">
+                <label>imiona</label>
+                <input class="form-control" type="text" placeholder="imiona" ng-model="osoba.imiona" ng-minlength=3 required/>
+            </div>
+            <div class="col-md-6"  ng-class="{error: osobaForm.osoba.nazwisko.$dirty && osobaForm.osoba.nazwisko.$invalid}">
+                <label>nazwisko</label>
+                <input class="form-control" type="text" placeholder="nazwisko" ng-model="osoba.nazwisko" ng-minlength=5 required/>
+            </div>
+
+
+        </div>
+        <br>
+
+        
+        <br>
+        
+    </div>
+
+
+
+
+
+
+</form>
+
+<p class="hidden">{{osoba.valid = osobaForm.$valid}}</p>
+
