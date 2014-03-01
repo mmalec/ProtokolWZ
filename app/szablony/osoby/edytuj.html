@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<div appheader ></div>
+
+<div class="container bs-docs-container">
+
+    <div class="row">
+        <div class="col-md-3">
+            <div class="bs-sidebar hidden-print affix" role="complementary">
+                <ul class="nav bs-sidenav">
+
+                     <li class="active">
+                        <a  href="#/osoby/nowa" >Nowa osoba</a>
+                    </li>
+                    <li class="" >
+                        <a href="#/osoby/lista">Lista osób</a>
+                    </li>
+                    <li></li>
+                </ul>
+            </div>
+        </div>
+        <div class="col-md-9" role="main">
+            <h1>Edycja osoby</h1>
+            <div class="panel panel-default">
+
+                <div class="panel-heading">Podaj dane osoby. UUID {{osoba._id}} </div>
+                <div  ng-include="osoba.szablon_edycji" class="animate-repeat panel-body"> </div>
+                <div class="panel-body">
+                    
+                    <button class="btn" ng-show="!osoba.valid" disabled>Zapisz</button>
+                    <button class="btn-success btn" ng-show="osoba.valid" ng-click="zapisz()">Zapisz</button>
+                    <button class="btn-warning btn" ng-click="zamknij()" >Zamknij</button>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+

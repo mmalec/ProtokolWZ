@@ -20,12 +20,53 @@ var osoba = {
 
 }
 
+function OsobaEdycjaCtrl($scope, $db, $routeParams, $location, $timeout, $rootScope) {
 
+    // $scope.zaladowany = false
+
+    $db.get($routeParams.id, function(err, doc) {
+        console.log(doc)
+        if (err == null) {
+
+
+            //alert("dziala")
+            var _osoba = angular.fromJson(doc)
+            var stan = _osoba.valid;
+            _osoba.valid = stan;
+            $rootScope.osoba = _osoba
+            // $scope.zaladowany = true
+            $scope.$apply()
+        }
+    })
+
+$scope.zamknij = function(){
+        $location.path('/osoby/lista')
+}
+
+
+    $scope.zapisz = function() {
+
+        $rootScope.osoba.data_modyfikacji = new Date().toLocaleString();
+        // $scope.kontrolujacy.key = "kontrolujacy"
+        //  $scope.kontrolujacy.imiona="moje imiona"
+        // var record = angular.toJson($scope.protokol);
+        $db.put($rootScope.osoba, function(errors, response) {
+            console.log(errors)
+            if (errors === null) {
+
+                $location.path('/osoby/lista')
+                $scope.$apply()
+            }
+        })
+
+
+    }
+}
 
 function OsobyNowaCtrl($scope, $rootScope, $db, $location) {
     $rootScope.osoba = angular.fromJson(angular.toJson(osoba))
     $rootScope.osoba._id = UUID.generate();
-    $rootScope.osoba.imiona = 'Imiona'
+    //$rootScope.osoba.imiona = ''
 
 
     $scope.zapisz = function() {

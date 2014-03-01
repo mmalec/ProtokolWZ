@@ -36,7 +36,7 @@ and open the template in the editor.
                     <ul class="list-group">
                     <li class="thumbnail animate-repeat"  ng-repeat="osoba in lista | filter:q | orderBy:'-data_utworzenia' track by $index ">
                        
-                        <a class="bs-about" href="#/osoby/edytuj/{{osoba.id}}">{{$index+1}}. {{osoba.imiona}} {{osoba.nazwisko}}</a>
+                        <a class="bs-about" href="#/osoby/edytuj/{{osoba._id}}">{{$index+1}}. {{osoba.imiona}} {{osoba.nazwisko}}</a>
                         <div class="btn-group right pull-right">
 
                                 <div class=" btn-danger btn-sm " ng-click="usun(osoba)">Usuń</div>

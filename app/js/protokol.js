@@ -57,11 +57,35 @@ var protokol = {
         kontrolujacy:{nazwa: "Kontrolujący",
             aktywny: false,
             szablon_edycji: 'szablony/protokol/lista_kontrolujacych.html',
-            lista_kontrolujacych:[]
+            lista_kontrolujacych:[],
+            valid:false
         },
         kontrolowani:{nazwa: "Kontrolowani",
+            type:'kontrolujacy',
             aktywny: false,
-            szablon_edycji: 'partials/protokolTpls/kontrolujacy.html'}
+            szablon_edycji: 'szablony/protokol/lista_kontrolowanych.html',
+            lista_kontrolowanych:[],
+            valid:false,
+            dane:{
+                wladajacy:{
+                    type:'wladajacy',
+                    nazwa:'Władający',
+                    szablon_edycji:'szablony/protokol/lista_wladajacych.html',
+                    lista_wladajacych:[],
+                    wymagany:false,
+                    aktywny:false
+                    
+                },
+                adresat_decyzji:{
+                    type:'adresat',
+                    nazwa:"Adresaci decyzji",
+                    szablon_edycji:'szablony/protokol/lista_adresatow_decyzji.html',
+                    lista_adresatow_decyzji:[],
+                    wymagany:false,
+                    aktywny:false
+                }
+            }
+        }
 
 
     },

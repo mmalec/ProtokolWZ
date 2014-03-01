@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+
+<div class="col-md-9" role="main" ng-controller="ProtokolDodawanieKontrolowanychCtrl" >
+    <h1 popover="Nazwiska oraz adresy lub siedziby kontrolowanych" popover-trigger="mouseenter">Lista kontrolowanych</h1>
+
+
+
+    <tabset justified="true"  >
+        <tab heading="Lista kontrolowanych" ng-click="zmiana_zakladki(1)">
+            <div class="" >
+                <div class="panel-body" >
+                    <br>
+                    <ul class="list-group" >
+                        <li class="thumbnail animate-repeat"  ng-repeat="kontrolowany in lista_kontrolowanych_tmp | orderBy:'-key.data_utworzenia' track by $index ">
+                            {{$index + 1}}. {{kontrolowany.imiona}} {{kontrolowany.nazwisko}}
+                            <div class="btn-group right pull-right">
+
+                                <div class=" btn-danger btn-sm " ng-click="usun_z_listy_kontrolowanych(kontrolowany)">Usuń</div>
+                            </div>
+
+                           
+                            <p>
+                                <em class="small">Data utworzenia: {{kontrolowany.data_utworzenia}}</em>
+                                <em class="small">{{kontrolowany.type}}</em>
+                                <em class='small'>{{kontrolowany._id}}</em>
+                            </p>
+
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </tab>
+        <tab heading="Wyszukiwanie" ng-click="zmiana_zakladki(2)">
+            <div class="">
+
+
+                <br>
+                <div class="panel-heading">
+                    <form novalidate >
+                    <div class="input-group">
+                    <input class="form-control" placeholder="szukaj"  ng-model="q"/>
+                    <span class="input-group-btn">
+                        <button class="btn btn-success " type="button" ng-click="openEdytujOsobaModal('nowy')">Nowy</button>
+                    </span>
+                    </div>
+                    </form>
+                </div>
+                <div class="panel-body " >
+
+                    Liczba znalezionych  {{liczba_znalezionych}}
+
+                    <ul class="list-group">
+                        <li class="thumbnail animate-repeat"  ng-repeat="kontrolowany in lista| filter:q | orderBy:'-key.data_utworzenia' track by $index ">
+
+
+                            {{$index + 1}}. <a class="bs-about" ng-click="openEdytujOsobaModal(kontrolowany.key)"> {{kontrolowany.key.stopien}} {{kontrolowany.key.imiona}} {{kontrolowany.key.nazwisko}}</a>
+                            <div class="btn-group right pull-right">
+
+                                <div class=" btn-info btn-sm " ng-click="dodaj_do_listy(kontrolowany.key)">Dodaj</div>
+                            </div>
+
+                          
+                            <p>
+                                <em class="small">Data utworzenia: {{kontrolowany.key.data_utworzenia}}</em>
+                                <em class="small">{{kontrolowany.key.type}}</em>
+                                <em class='small'>{{kontrolowany.key._id}}</em>
+                            </p>
+
+                        </li>
+                    </ul>
+
+                </div>
+            </div>
+        </tab>
+    </tabset>
+
+
+</div>

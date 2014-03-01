@@ -16,8 +16,12 @@ and open the template in the editor.
             <div class="bs-sidebar hidden-print affix" role="complementary" >
                 <ul class="nav bs-sidenav">
 
-                    <li  ng-repeat="odnosnik in protokol.dane" ng-class="{active:odnosnik.aktywny}">
+                    <li  ng-repeat="odnosnik in odnosniki " ng-class="{active:odnosnik.aktywny}">
                         <a    ng-click="klick(odnosnik)"  >{{odnosnik.nazwa}}</a>
+                        <ul class="nav">
+                            <li  ng-repeat="sub in odnosnik.dane" ng-class="{active:sub.aktywny}">
+                                <a    ng-click="sub_klick(sub, odnosnik)"  >{{sub.nazwa}}</a>
+                        </ul>
                     </li>
 
                 </ul>
