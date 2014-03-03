@@ -73,8 +73,19 @@ var protokol = {
                     szablon_edycji:'szablony/protokol/lista_wladajacych.html',
                     lista_wladajacych:[],
                     wymagany:false,
-                    aktywny:false
+                    aktywny:false,
+                    valid:false,
                     
+                },
+                
+                reprezentujacy:{
+                    type:'reprezentujacy',
+                    nazwa:"Reprezentujący kontrolowanego",
+                    szablon_edycji:'szablony/protokol/lista_reprezentujacych_kontrolowanego.html',
+                    lista_reprezentujacych:[],
+                    wymagany:false,
+                    aktywny:false,
+                    valid:false,
                 },
                 adresat_decyzji:{
                     type:'adresat',
@@ -82,7 +93,8 @@ var protokol = {
                     szablon_edycji:'szablony/protokol/lista_adresatow_decyzji.html',
                     lista_adresatow_decyzji:[],
                     wymagany:false,
-                    aktywny:false
+                    aktywny:false,
+                    valid:false,
                 }
             }
         }

@@ -132,6 +132,22 @@ function ProtokolDodawanieKontrolowanychCtrl($scope, $rootScope, $db, $timeout, 
                     $scope.lista_tmp = _kontrolowani
                     $scope.$apply();
                 }
+                 else if($rootScope.wybrany.type == 'reprezentujacy'){
+                  //  alert('lista adresatów')
+                     angular.forEach($rootScope.wybrany.lista_reprezentujacych, function(kontrolowany_z_listy) {
+                        angular.forEach(_kontrolowani, function(kont_z_bazy) {
+                            if (kont_z_bazy.key._id === kontrolowany_z_listy._id) {
+                                //  alert(kont_z_bazy.key._id +'\n'+ kontrolujacy_z_listy._id)
+                                var index = _kontrolowani.indexOf(kont_z_bazy);
+                                _kontrolowani.splice(index, 1);
+                            }
+
+                        })
+                    })
+                    $scope.lista_kontrolowanych_tmp = $rootScope.wybrany.lista_reprezentujacych
+                    $scope.lista_tmp = _kontrolowani
+                    $scope.$apply();
+                }
                 else {
 
                     $scope.lista_tmp = _kontrolowani
@@ -258,6 +274,11 @@ function ProtokolDodawanieKontrolowanychCtrl($scope, $rootScope, $db, $timeout, 
             $rootScope.wybrany.lista_wladajacych.push(osoba);
             $scope.lista_kontrolowanych_tmp = $rootScope.wybrany.lista_wladajacych;
         }
+        else if ($rootScope.wybrany.type === 'reprezentujacy') {
+           // alert('dodawanie')
+            $rootScope.wybrany.lista_reprezentujacych.push(osoba);
+            $scope.lista_kontrolowanych_tmp = $rootScope.wybrany.lista_reprezentujacych;
+        }
         else {
             $scope.lista_osob_tmp = $rootScope.wybrany.lista_kontrolowanych.push(osoba);
             $scope.lista_kontrolowanych_tmp = $rootScope.wybrany.lista_kontrolowanych
@@ -299,6 +320,12 @@ function ProtokolDodawanieKontrolowanychCtrl($scope, $rootScope, $db, $timeout, 
           //  alert('usuwanie')
             var index = this.wybrany.lista_wladajacych.indexOf(osoba);
             this.wybrany.lista_wladajacych.splice(index, 1);
+            this.lista_tmp.push({key: osoba})
+        }
+         else if ($rootScope.wybrany.type === 'reprezentujacy')   {
+          //  alert('usuwanie')
+            var index = this.wybrany.lista_reprezentujacych.indexOf(osoba);
+            this.wybrany.lista_reprezentujacych.splice(index, 1);
             this.lista_tmp.push({key: osoba})
         }
         else {
