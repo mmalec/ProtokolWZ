@@ -19,6 +19,13 @@ div.kontrolujacyModalWindow .modal-content{
     font-weight: normal;
 }
 
+textarea.ng-invalid {
+  border: 1px solid red;
+}
+textarea.ng-valid {
+  border: 1px solid green;
+}
+
 input.ng-invalid {
   border: 1px solid red;
 }

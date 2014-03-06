@@ -95,6 +95,15 @@ var protokol = {
                     wymagany:false,
                     aktywny:false,
                     valid:false,
+                },
+                 inne_osoby:{
+                    type:'inne_osoby',
+                    nazwa:"Inne osoby",
+                    szablon_edycji:'szablony/protokol/lista_innych_osob.html',
+                    notatka:'',
+                    wymagany:true,
+                    aktywny:false,
+                    valid:false,
                 }
             }
         }

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+
+<div class="col-md-9" role="main" ng-controller="ProtokolDodawanieKontrolowanychCtrl" >
+    <h1 popover="Informacja o tym, kto i w jakim charakterze byl obecny przy kontroli " popover-trigger="mouseenter">Inne osoby</h1>
+
+
+
+    <div class="panel-body">
+        
+        <form name="inne_osoby_form" novalidate>
+            <div class="radio">
+            <label> 
+                <input type="radio"  class="radio-inline"  ng-model="wybrany.wymagany" ng-value=true />Wymagany
+            </label>
+            </div>
+            <div class="radio">
+            <label>
+                <input type="radio" class="radio-inline"  ng-model="wybrany.wymagany" ng-value=false >Nie dotyczny
+           
+            </label>
+            </div>
+            <div >
+                <textarea  class="form-control" ng-show="wybrany.wymagany" ng-required="wybrany.wymagany" ng-model="wybrany.notatka" ></textarea>
+            </div>
+        </form>
+        
+        <p class="hidden">{{wybrany.valid=inne_osoby_form.$valid}}</p>
+       
+    </div>

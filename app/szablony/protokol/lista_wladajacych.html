@@ -6,12 +6,12 @@ and open the template in the editor.
 -->
 
 <div class="col-md-9" role="main" ng-controller="ProtokolDodawanieKontrolowanychCtrl" >
-    <h1 popover="Faktycznie władającym budynkiem, obiektem budowlanym lub terenem " popover-trigger="mouseenter">Lista władających</h1>
+    <h1 popover="Władający " popover-trigger="mouseenter">Lista władających.</h1>
 
 
 
     <tabset justified="true"  >
-        <tab heading="Lista władających objektem" ng-click="zmiana_zakladki(1)">
+        <tab heading="Lista władających" ng-click="zmiana_zakladki(1)">
             <div class="" >
                 <div class="panel-body" >
                     <br>
@@ -20,7 +20,7 @@ and open the template in the editor.
                             {{$index + 1}}. {{kontrolowany.imiona}} {{kontrolowany.nazwisko}}
                             <div class="btn-group right pull-right">
 
-                                <div class=" btn-danger btn-sm " ng-click="usun_z_listy_kontrolowanych(kontrolowany)">Usuń</div>
+                                <div class=" btn-danger btn-sm " ng-click="usun_z_listy_kontrolowanych(kontrolowany, 'adresat')">Usuń</div>
                             </div>
 
                            
@@ -61,7 +61,7 @@ and open the template in the editor.
                             {{$index + 1}}. <a class="bs-about" ng-click="openEdytujOsobaModal(kontrolowany.key)"> {{kontrolowany.key.stopien}} {{kontrolowany.key.imiona}} {{kontrolowany.key.nazwisko}}</a>
                             <div class="btn-group right pull-right">
 
-                                <div class=" btn-info btn-sm " ng-click="dodaj_do_listy(kontrolowany.key)">Dodaj</div>
+                                <div class=" btn-info btn-sm " ng-click="dodaj_do_listy(kontrolowany.key, 'adresat')">Dodaj</div>
                             </div>
 
                           

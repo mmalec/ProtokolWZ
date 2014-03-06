@@ -61,6 +61,27 @@ angular.module('myApp.controllers', []).
 
 
 function ProtokolDodawanieKontrolowanychCtrl($scope, $rootScope, $db, $timeout, $route, $modal) {
+    
+    $scope.zmiana_inne_osoby_wymagany = function(){
+       alert('dziala' + $rootScope.wybrany.wymagany)
+        if($rootScope.wybrany.wymagany=='true'){
+             alert('dziala' + $rootScope.wybrany.wymagany)
+            $rootScope.wybrany.notatka='';
+           // $rootScope.wybrany.wymagany=false
+            $rootScope.wybrany.valid=false;
+            $scope.inne_osoby_required=true
+           // $scope.$apply()
+        }
+         if($rootScope.wybrany.wymagany=='false'){
+               alert('dziala' + $rootScope.wybrany.wymagany)
+          //     $rootScope.wybrany.wymagany=true
+            $rootScope.wybrany.notatka='';
+            $rootScope.wybrany.valid=true;
+            $scope.inne_osoby_required=false
+            //$scope.$apply()
+        }
+    }
+    
     function map(doc) {
         if (doc.type == 'osoba') {
             emit(doc, null);
